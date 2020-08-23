@@ -4,8 +4,7 @@ public class Duke {
 
     public static void main(String[] args) {
 
-        String[] tasks = new String[100];
-        int taskCount = 0;
+        Task[] tasks = new Task[100];
 
         String border = "==================================================";
         System.out.println(border);
@@ -21,20 +20,20 @@ public class Duke {
 
         while (!line.equals("bye")) {
             if (line.equals("list")) {
-                for (int i = 0; i < taskCount; i++) {
-                    System.out.print((i + 1) + ". ");
-                    System.out.println(tasks[i]);
+                System.out.println(border);
+                for (int i = 0; i < Task.taskCount; i++) {
+                    System.out.print((i + 1) + ".[" + tasks[i].getStatusIcon() + "] ");
+                    System.out.println(tasks[i].description);
                 }
+                System.out.println(border);
+                line = in.nextLine();
+            } else {
+                tasks[Task.taskCount] = new Task(line);
+                System.out.println(border);
+                System.out.println("added " + line);
+                System.out.println(border);
+                line = in.nextLine();
             }
-            else {
-                tasks[taskCount] = line;
-                taskCount++;
-            }
-
-            System.out.println(border);
-            System.out.println("added " + line);
-            System.out.println(border);
-            line = in.nextLine();
         }
 
         System.out.println(border);
