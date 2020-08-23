@@ -2,7 +2,6 @@ public class Task {
 
     protected String description;
     protected boolean isDone;
-
     public static int taskCount = 0;
 
     public Task(String description) {
