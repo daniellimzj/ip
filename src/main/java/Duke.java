@@ -21,19 +21,34 @@ public class Duke {
         while (!line.equals("bye")) {
             if (line.equals("list")) {
                 System.out.println(border);
+
                 for (int i = 0; i < Task.taskCount; i++) {
                     System.out.print((i + 1) + ".[" + tasks[i].getStatusIcon() + "] ");
                     System.out.println(tasks[i].description);
                 }
                 System.out.println(border);
-                line = in.nextLine();
+
+            } else if (line.startsWith("done ")) {
+
+                int taskNumber = Integer.parseInt(line.substring(5)) - 1;
+
+                if (taskNumber > Task.taskCount - 1) {
+                    break;
+                }
+
+                tasks[taskNumber].setIsDone(true);
+                System.out.println(border);
+                System.out.println("Nice! I've marked this task as done:");
+                System.out.println("[" + tasks[taskNumber].getStatusIcon() + "] " + tasks[taskNumber].description);
+                System.out.println(border);
             } else {
                 tasks[Task.taskCount] = new Task(line);
                 System.out.println(border);
                 System.out.println("added " + line);
                 System.out.println(border);
-                line = in.nextLine();
+
             }
+            line = in.nextLine();
         }
 
         System.out.println(border);

@@ -15,4 +15,8 @@ public class Task {
         return (isDone ? "\u2713" : "\u2718");
     }
 
+    public void setIsDone(boolean isDone) {
+        this.isDone = isDone;
+    }
+
 }
