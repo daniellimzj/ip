@@ -18,16 +18,12 @@ public class Duke {
 
         // Check for bye command
         while (!line.equals("bye")) {
+
             //Check for list command
             if (line.equals("list")) {
-                System.out.println(border);
-                for (int i = 0; i < Task.taskCount; i++) {
-                    System.out.print((i + 1) + ".");
-                    System.out.println(tasks[i]);
-                }
-                System.out.println(border);
+                printList(tasks, border);
 
-            // Check for done command
+                // Check for done command
             } else if (line.startsWith("done ")) {
                 int taskNumber = Integer.parseInt(line.substring(5)) - 1;
                 // Some basic error checking
@@ -49,8 +45,21 @@ public class Duke {
             }
             line = in.nextLine();
         }
+        printBye(border);
+    }
+
+    private static void printBye(String border) {
         System.out.println(border);
         System.out.println("Bye. Hope to see you again soon!");
+        System.out.println(border);
+    }
+
+    private static void printList(Task[] tasks, String border) {
+        System.out.println(border);
+        for (int i = 0; i < Task.taskCount; i++) {
+            System.out.print((i + 1) + ".");
+            System.out.println(tasks[i]);
+        }
         System.out.println(border);
     }
 }
