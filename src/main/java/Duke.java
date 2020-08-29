@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class Duke {
 
     public static void main(String[] args) {
-
         Task[] tasks = new Task[100];
         String border = "==================================================";
         System.out.println(border);
@@ -23,8 +22,8 @@ public class Duke {
             if (line.equals("list")) {
                 System.out.println(border);
                 for (int i = 0; i < Task.taskCount; i++) {
-                    System.out.print((i + 1) + ".[" + tasks[i].getStatusIcon() + "] ");
-                    System.out.println(tasks[i].description);
+                    System.out.print((i + 1) + ".");
+                    System.out.println(tasks[i]);
                 }
                 System.out.println(border);
 
@@ -38,7 +37,7 @@ public class Duke {
                 tasks[taskNumber].setIsDone(true);
                 System.out.println(border);
                 System.out.println("Nice! I've marked this task as done:");
-                System.out.println("[" + tasks[taskNumber].getStatusIcon() + "] " + tasks[taskNumber].description);
+                System.out.println(tasks[taskNumber]);
                 System.out.println(border);
 
             // If not a command, add a task
