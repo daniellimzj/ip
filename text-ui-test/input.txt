@@ -1,0 +1,9 @@
+list
+todo buy groceries!!!
+deadline do cs2113t project /by the day after tomorrow
+event finals /at the end of the semester
+list
+hello
+done 2
+list
+bye
