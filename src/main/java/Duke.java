@@ -35,7 +35,15 @@ public class Duke {
                 System.out.println(border);
 
             } else if (line.startsWith("deadline")) {
-                System.out.println("DEADLINE TODO");
+                String deadline = line.substring(9);
+                int indexOfSlash = deadline.indexOf("/by");
+                String description = deadline.substring(0, indexOfSlash).trim();
+                String by = deadline.substring(indexOfSlash + 4).trim();
+                tasks[Task.taskCount] = new Deadline(description, by);
+                System.out.println(border);
+                System.out.println("added " + deadline);
+                System.out.println(border);
+
 
             } else if (line.startsWith("event")) {
                 System.out.println("EVENT TODO");
