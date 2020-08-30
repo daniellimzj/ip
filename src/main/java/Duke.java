@@ -5,25 +5,16 @@ public class Duke {
     public static void main(String[] args) {
         Task[] tasks = new Task[100];
         String border = "==================================================";
-        System.out.println(border);
-        System.out.println(" _________________________ ");
-        System.out.println("| Hello! I'm Duke         |");
-        System.out.println("| What can I do for you?  |");
-        System.out.println("| ________________________|");
-        System.out.println("|/");
-        System.out.println(border);
+        printWelcomeMessage(border);
 
         Scanner in = new Scanner(System.in);
         String line = in.nextLine();
 
-        // Check for bye command
         while (!line.equals("bye")) {
 
-            //Check for list command
             if (line.equals("list")) {
                 printList(tasks, border);
 
-                // Check for done command
             } else if (line.startsWith("done ")) {
                 int taskNumber = Integer.parseInt(line.substring(5)) - 1;
                 // Some basic error checking
@@ -36,19 +27,39 @@ public class Duke {
                 System.out.println(tasks[taskNumber]);
                 System.out.println(border);
 
-            // If not a command, add a task
+            } else if (line.startsWith("todo")) {
+                String todo = line.substring(5);
+                tasks[Task.taskCount] = new ToDo(todo);
+                System.out.println(border);
+                System.out.println("added " + todo);
+                System.out.println(border);
+
+            } else if (line.startsWith("deadline")) {
+                System.out.println("DEADLINE TODO");
+
+            } else if (line.startsWith("event")) {
+                System.out.println("EVENT TODO");
+
             } else {
-                tasks[Task.taskCount] = new Task(line);
-                System.out.println(border);
-                System.out.println("added " + line);
-                System.out.println(border);
+                System.out.println ("Unknown command!");
             }
+
             line = in.nextLine();
         }
-        printBye(border);
+        printByeMessage(border);
     }
 
-    private static void printBye(String border) {
+    private static void printWelcomeMessage(String border) {
+        System.out.println(border);
+        System.out.println(" _________________________ ");
+        System.out.println("| Hello! I'm Duke         |");
+        System.out.println("| What can I do for you?  |");
+        System.out.println("| ________________________|");
+        System.out.println("|/");
+        System.out.println(border);
+    }
+
+    private static void printByeMessage(String border) {
         System.out.println(border);
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println(border);
