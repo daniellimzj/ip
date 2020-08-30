@@ -46,7 +46,14 @@ public class Duke {
 
 
             } else if (line.startsWith("event")) {
-                System.out.println("EVENT TODO");
+                String event = line.substring(6);
+                int indexOfSlash = event.indexOf("/at");
+                String description = event.substring(0, indexOfSlash).trim();
+                String at = event.substring(indexOfSlash + 4).trim();
+                tasks[Task.taskCount] = new Event(description, at);
+                System.out.println(border);
+                System.out.println("added " + event);
+                System.out.println(border);
 
             } else {
                 System.out.println ("Unknown command!");
