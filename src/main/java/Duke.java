@@ -107,8 +107,8 @@ public class Duke {
 
     private static void printList(Task[] tasks, String border) {
         System.out.println(border);
-        for (int i = 1; i <= Task.taskCount; i++) {
-            System.out.print((i) + ".");
+        for (int i = 0; i < Task.taskCount; i++) {
+            System.out.print((i + 1) + ".");
             System.out.println(tasks[i]);
         }
         System.out.println(border);
