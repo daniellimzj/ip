@@ -5,6 +5,17 @@ public class Duke {
     private static final String border = "==================================================";
     private static final int MAX_LIST_CAPACITY = 100;
 
+    private static final String PARAM_BY = "/by";
+    private static final String PARAM_AT = "/at";
+
+    private static final String PARAM_EVENT = "event";
+    private static final String PARAM_DEADLINE = "deadline";
+    private static final String PARAM_TODO = "todo";
+    private static final String PARAM_DONE = "done";
+    private static final String PARAM_LIST = "list";
+    private static final String PARAM_BYE = "bye";
+
+
     public static void main(String[] args) {
         Task[] tasks = new Task[MAX_LIST_CAPACITY];
         printWelcomeMessage();
@@ -12,27 +23,26 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         String line = in.nextLine();
 
-        while (!line.equals("bye")) {
+        while (!line.equals(PARAM_BYE)) {
 
-            if (line.equals("list")) {
+            if (line.equals(PARAM_LIST)) {
                 printList(tasks);
 
-            } else if (line.startsWith("done ")) {
+            } else if (line.startsWith(PARAM_DONE)) {
                 int taskNumber = markTaskAsDone(tasks, line);
                 printDoneTaskMessage(tasks[taskNumber]);
 
-            } else if (line.startsWith("todo")) {
+            } else if (line.startsWith(PARAM_TODO)) {
                 addToDo(tasks, line);
-                printAddTaskMessage(tasks[Task.taskCount - 1]);
+                printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
 
-            } else if (line.startsWith("deadline")) {
+            } else if (line.startsWith(PARAM_DEADLINE)) {
                 addDeadline(tasks, line);
-                printAddTaskMessage(tasks[Task.taskCount - 1]);
+                printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
 
-
-            } else if (line.startsWith("event")) {
+            } else if (line.startsWith(PARAM_EVENT)) {
                 addEvent(tasks, line);
-                printAddTaskMessage(tasks[Task.taskCount - 1]);
+                printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
 
             } else {
                 printErrorMessage();
@@ -45,33 +55,33 @@ public class Duke {
 
     private static void addDeadline(Task[] tasks, String line) {
 
-        String deadline = line.substring(line.lastIndexOf("deadline "));
-        int firstIndexOfByCommand = deadline.indexOf("/by ");
-        int lastIndexOfByCommand = deadline.lastIndexOf("/by ");
+        String deadline = line.substring(line.indexOf(PARAM_DEADLINE) + PARAM_DEADLINE.length());
+        int firstIndexOfByCommand = deadline.indexOf(PARAM_BY);
+        int lastIndexOfByCommand = firstIndexOfByCommand + PARAM_BY.length();
 
         String description = deadline.substring(0, firstIndexOfByCommand).trim();
-        String by = deadline.substring(lastIndexOfByCommand + 4).trim();
-        tasks[Task.taskCount] = new Deadline(description, by);
+        String by = deadline.substring(lastIndexOfByCommand).trim();
+        tasks[Task.getTaskCount()] = new Deadline(description, by);
     }
 
     private static void addEvent(Task[] tasks, String line) {
 
-        String event = line.substring(line.lastIndexOf("event "));
-        int firstIndexOfAtCommand = event.indexOf("/at ");
-        int lastIndexOfAtCommand = event.lastIndexOf("/at ");
+        String event = line.substring(line.indexOf(PARAM_EVENT) + PARAM_EVENT.length());
+        int firstIndexOfAtCommand = event.indexOf(PARAM_AT);
+        int lastIndexOfAtCommand = firstIndexOfAtCommand + PARAM_AT.length();
 
         String description = event.substring(0, firstIndexOfAtCommand).trim();
         String at = event.substring(lastIndexOfAtCommand).trim();
-        tasks[Task.taskCount] = new Event(description, at);
+        tasks[Task.getTaskCount()] = new Event(description, at);
     }
 
     private static void addToDo(Task[] tasks, String line) {
-        String todo = line.substring(line.lastIndexOf("todo "));
-        tasks[Task.taskCount] = new ToDo(todo);
+        String todo = line.substring(line.indexOf(PARAM_TODO) + PARAM_TODO.length()).trim();
+        tasks[Task.getTaskCount()] = new ToDo(todo);
     }
 
     private static int markTaskAsDone(Task[] tasks, String line) {
-        int taskNumber = Integer.parseInt(line.substring(5)) - 1;
+        int taskNumber = Integer.parseInt(line.substring(PARAM_DONE.length()).trim()) - 1;
         tasks[taskNumber].setIsDone(true);
         return taskNumber;
     }
@@ -80,7 +90,7 @@ public class Duke {
         System.out.println(border);
         System.out.println("Got it. I've added this task:");
         System.out.println("  " + task);
-        System.out.printf("Now you have %d tasks in the list.\n", Task.taskCount);
+        System.out.printf("Now you have %d tasks in the list.\n", Task.getTaskCount());
         System.out.println(border);
     }
 
@@ -105,7 +115,7 @@ public class Duke {
 
     private static void printList(Task[] tasks) {
         System.out.println(border);
-        for (int i = 0; i < Task.taskCount; i++) {
+        for (int i = 0; i < Task.getTaskCount(); i++) {
             System.out.print((i + 1) + ".");
             System.out.println(tasks[i]);
         }
@@ -114,7 +124,7 @@ public class Duke {
 
     private static void printWelcomeMessage() {
         System.out.println(border);
-        System.out.println(" _________________________ ");
+        System.out.println(" _________________________");
         System.out.println("| Hello! I'm Duke         |");
         System.out.println("| What can I do for you?  |");
         System.out.println("| ________________________|");

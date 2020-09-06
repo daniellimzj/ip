@@ -2,7 +2,9 @@ public class Task {
 
     protected String description;
     protected boolean isDone;
-    public static int taskCount = 0;
+    private static int taskCount = 0;
+    private static final String TICK = "\u2713";
+    private static final String CROSS = "\u2718";
 
     public Task(String description) {
         this.description = description;
@@ -10,8 +12,12 @@ public class Task {
         taskCount++;
     }
 
+    public static int getTaskCount() {
+        return taskCount;
+    }
+
     public String getStatusIcon() {
-        return (isDone ? "\u2713" : "\u2718");
+        return (isDone ? TICK : CROSS);
     }
 
     public void setIsDone(boolean isDone) {
