@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Duke {
 
-    private static final String border = "==================================================";
+
     private static final int MAX_LIST_CAPACITY = 100;
 
     private static final String PARAM_BY = "/by";
@@ -18,7 +18,7 @@ public class Duke {
 
     public static void main(String[] args) {
         Task[] tasks = new Task[MAX_LIST_CAPACITY];
-        printWelcomeMessage();
+        Printer.printWelcomeMessage();
 
         Scanner in = new Scanner(System.in);
         String line = in.nextLine();
@@ -26,31 +26,49 @@ public class Duke {
         while (!line.equals(PARAM_BYE)) {
 
             if (line.equals(PARAM_LIST)) {
-                printList(tasks);
+                Printer.printList(tasks);
 
             } else if (line.startsWith(PARAM_DONE)) {
-                int taskNumber = markTaskAsDone(tasks, line);
-                printDoneTaskMessage(tasks[taskNumber]);
+                try {
+                    int taskNumber = markTaskAsDone(tasks, line);
+                    Printer.printDoneTaskMessage(tasks[taskNumber]);
+                } catch (NumberFormatException e) {
+                    Printer.printDoneErrorMessage();
+                } catch (NullPointerException e) {
+                    Printer.printTaskNumberErrorMessage();
+                }
 
             } else if (line.startsWith(PARAM_TODO)) {
-                addToDo(tasks, line);
-                printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
+                try {
+                    addToDo(tasks, line);
+                    Printer.printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
+                } catch (DukeException e) {
+                    Printer.printDescriptionErrorMessage(PARAM_TODO);
+                }
 
             } else if (line.startsWith(PARAM_DEADLINE)) {
-                addDeadline(tasks, line);
-                printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
+                try {
+                    addDeadline(tasks, line);
+                    Printer.printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
+                } catch (StringIndexOutOfBoundsException e) {
+                    Printer.printDescriptionErrorMessage(PARAM_DEADLINE);
+                }
 
             } else if (line.startsWith(PARAM_EVENT)) {
-                addEvent(tasks, line);
-                printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
+                try {
+                    addEvent(tasks, line);
+                    Printer.printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
+                } catch (StringIndexOutOfBoundsException e) {
+                    Printer.printDescriptionErrorMessage(PARAM_EVENT);
+                }
 
             } else {
-                printErrorMessage();
+                Printer.printErrorMessage();
             }
 
             line = in.nextLine();
         }
-        printByeMessage();
+        Printer.printByeMessage();
     }
 
     private static void addDeadline(Task[] tasks, String line) {
@@ -75,60 +93,22 @@ public class Duke {
         tasks[Task.getTaskCount()] = new Event(description, at);
     }
 
-    private static void addToDo(Task[] tasks, String line) {
+    private static void addToDo(Task[] tasks, String line) throws DukeException {
+        String[] input = line.split(" ");
+        if (input.length < 2) {
+            throw new DukeException();
+        }
+
         String todo = line.substring(line.indexOf(PARAM_TODO) + PARAM_TODO.length()).trim();
         tasks[Task.getTaskCount()] = new ToDo(todo);
     }
 
     private static int markTaskAsDone(Task[] tasks, String line) {
+
         int taskNumber = Integer.parseInt(line.substring(PARAM_DONE.length()).trim()) - 1;
         tasks[taskNumber].setIsDone(true);
         return taskNumber;
     }
 
-    private static void printAddTaskMessage(Task task) {
-        System.out.println(border);
-        System.out.println("Got it. I've added this task:");
-        System.out.println("  " + task);
-        System.out.printf("Now you have %d tasks in the list.\n", Task.getTaskCount());
-        System.out.println(border);
-    }
 
-    private static void printByeMessage() {
-        System.out.println(border);
-        System.out.println("Bye. Hope to see you again soon!");
-        System.out.println(border);
-    }
-
-    private static void printDoneTaskMessage(Task task) {
-        System.out.println(border);
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(task);
-        System.out.println(border);
-    }
-
-    private static void printErrorMessage() {
-        System.out.println(border);
-        System.out.println ("Unknown command!");
-        System.out.println(border);
-    }
-
-    private static void printList(Task[] tasks) {
-        System.out.println(border);
-        for (int i = 0; i < Task.getTaskCount(); i++) {
-            System.out.print((i + 1) + ".");
-            System.out.println(tasks[i]);
-        }
-        System.out.println(border);
-    }
-
-    private static void printWelcomeMessage() {
-        System.out.println(border);
-        System.out.println(" _________________________");
-        System.out.println("| Hello! I'm Duke         |");
-        System.out.println("| What can I do for you?  |");
-        System.out.println("| ________________________|");
-        System.out.println("|/");
-        System.out.println(border);
-    }
 }
