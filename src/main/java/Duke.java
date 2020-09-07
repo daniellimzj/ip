@@ -33,16 +33,34 @@ public class Duke {
                 printDoneTaskMessage(tasks[taskNumber]);
 
             } else if (line.startsWith(PARAM_TODO)) {
-                addToDo(tasks, line);
-                printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
+                try {
+                    addToDo(tasks, line);
+                    printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
+                } catch (DukeException e) {
+                    System.out.println(border);
+                    System.out.println("Oops! the description of a todo cannot be empty!");
+                    System.out.println(border);
+                }
 
             } else if (line.startsWith(PARAM_DEADLINE)) {
-                addDeadline(tasks, line);
-                printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
+                try {
+                    addDeadline(tasks, line);
+                    printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println(border);
+                    System.out.println("Oops! the description of a deadline cannot be empty!");
+                    System.out.println(border);
+                }
 
             } else if (line.startsWith(PARAM_EVENT)) {
-                addEvent(tasks, line);
-                printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
+                try {
+                    addEvent(tasks, line);
+                    printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println(border);
+                    System.out.println("Oops! the description of an event cannot be empty!");
+                    System.out.println(border);
+                }
 
             } else {
                 printErrorMessage();
@@ -75,12 +93,18 @@ public class Duke {
         tasks[Task.getTaskCount()] = new Event(description, at);
     }
 
-    private static void addToDo(Task[] tasks, String line) {
+    private static void addToDo(Task[] tasks, String line) throws DukeException {
+        String[] input = line.split(" ");
+        if (input.length < 2) {
+            throw new DukeException();
+        }
+
         String todo = line.substring(line.indexOf(PARAM_TODO) + PARAM_TODO.length()).trim();
         tasks[Task.getTaskCount()] = new ToDo(todo);
     }
 
     private static int markTaskAsDone(Task[] tasks, String line) {
+
         int taskNumber = Integer.parseInt(line.substring(PARAM_DONE.length()).trim()) - 1;
         tasks[taskNumber].setIsDone(true);
         return taskNumber;
