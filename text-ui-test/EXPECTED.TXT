@@ -13,7 +13,7 @@ Got it. I've added this task:
 Now you have 1 tasks in the list.
 ==================================================
 ==================================================
-Oops! the description of todo is incorrect!
+Oops! The format of the todo is incorrect!
 ==================================================
 ==================================================
 Got it. I've added this task:
@@ -21,7 +21,7 @@ Got it. I've added this task:
 Now you have 2 tasks in the list.
 ==================================================
 ==================================================
-Oops! the description of deadline is incorrect!
+Oops! The format of the deadline is incorrect!
 ==================================================
 ==================================================
 Got it. I've added this task:
@@ -29,7 +29,7 @@ Got it. I've added this task:
 Now you have 3 tasks in the list.
 ==================================================
 ==================================================
-Oops! the description of an event is incorrect!
+Oops! The format of the event is incorrect!
 ==================================================
 ==================================================
 1.[T][✘] buy groceries!!!
