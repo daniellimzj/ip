@@ -48,7 +48,7 @@ public class Duke {
                     printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
                 } catch (DukeException e) {
                     System.out.println(border);
-                    System.out.println("Oops! the description of a todo cannot be empty!");
+                    System.out.println("Oops! the description of todo is incorrect!");
                     System.out.println(border);
                 }
 
@@ -58,7 +58,7 @@ public class Duke {
                     printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
                 } catch (StringIndexOutOfBoundsException e) {
                     System.out.println(border);
-                    System.out.println("Oops! the description of a deadline cannot be empty!");
+                    System.out.println("Oops! the description of deadline is incorrect!");
                     System.out.println(border);
                 }
 
@@ -68,7 +68,7 @@ public class Duke {
                     printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
                 } catch (StringIndexOutOfBoundsException e) {
                     System.out.println(border);
-                    System.out.println("Oops! the description of an event cannot be empty!");
+                    System.out.println("Oops! the description of an event is incorrect!");
                     System.out.println(border);
                 }
 

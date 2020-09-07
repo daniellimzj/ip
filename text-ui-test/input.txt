@@ -1,9 +1,13 @@
 list
 todo buy groceries!!!
+todo
 deadline do cs2113t project /by the day after tomorrow
+deadline do cs2101 project /at tomorrow afternoon
 event finals /at the end of the semester
+event midterms /by week 7
 list
 hello
 done 2
+done 18
 list
 bye
