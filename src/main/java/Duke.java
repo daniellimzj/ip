@@ -29,8 +29,18 @@ public class Duke {
                 printList(tasks);
 
             } else if (line.startsWith(PARAM_DONE)) {
-                int taskNumber = markTaskAsDone(tasks, line);
-                printDoneTaskMessage(tasks[taskNumber]);
+                try {
+                    int taskNumber = markTaskAsDone(tasks, line);
+                    printDoneTaskMessage(tasks[taskNumber]);
+                } catch (NumberFormatException e) {
+                    System.out.println(border);
+                    System.out.println("Oops! Please input a number after done!");
+                    System.out.println(border);
+                } catch (NullPointerException e) {
+                    System.out.println(border);
+                    System.out.println("Oops! Please input a task number that exists!");
+                    System.out.println(border);
+                }
 
             } else if (line.startsWith(PARAM_TODO)) {
                 try {
