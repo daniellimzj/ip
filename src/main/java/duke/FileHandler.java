@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileHandler {
@@ -35,7 +35,7 @@ public class FileHandler {
 
     }
 
-    public static void processFileContents(Task[] tasks) throws DukeException{
+    public static void processFileContents(ArrayList<Task> tasks) throws DukeException {
         try {
             File f = new File(FILE_PATH);
             Scanner s = new Scanner(f);
@@ -46,16 +46,16 @@ public class FileHandler {
 
                 switch (task[0]) {
                 case "T":
-                    tasks[Task.getTaskCount()] = new ToDo(task[2]);
-                    tasks[Task.getTaskCount() - 1].setIsDone(task[1].equals(Task.getTick()));
+                    tasks.add(new ToDo(task[2]));
+                    tasks.get(Task.getTaskCount() - 1).setIsDone(task[1].equals(Task.getTick()));
                     break;
                 case "E":
-                    tasks[Task.getTaskCount()] = new Event(task[2], task[3]);
-                    tasks[Task.getTaskCount() - 1].setIsDone(task[1].equals(Task.getTick()));
+                    tasks.add(new Event(task[2], task[3]));
+                    tasks.get(Task.getTaskCount() - 1).setIsDone(task[1].equals(Task.getTick()));
                     break;
                 case "D":
-                    tasks[Task.getTaskCount()] = new Deadline(task[2], task[3]);
-                    tasks[Task.getTaskCount() - 1].setIsDone(task[1].equals(Task.getTick()));
+                    tasks.add(new Deadline(task[2], task[3]));
+                    tasks.get(Task.getTaskCount() - 1).setIsDone(task[1].equals(Task.getTick()));
                     break;
                 default:
                     throw new DukeException();
@@ -66,10 +66,10 @@ public class FileHandler {
         }
     }
 
-    public static void writeTasksToFile(Task[] tasks) throws IOException {
+    public static void writeTasksToFile(ArrayList<Task> tasks) throws IOException {
         FileWriter fw = new FileWriter(FILE_PATH);
         for (int i = 0; i < Task.getTaskCount(); i++) {
-            fw.append(tasks[i].printToFile() + "\n");
+            fw.append(tasks.get(i).printToFile() + "\n");
         }
         fw.close();
     }
