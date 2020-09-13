@@ -18,16 +18,16 @@ public class Task {
         return taskCount;
     }
 
+    public static void decreaseTaskCount() {
+        taskCount = taskCount - 1;
+    }
+
     public String getStatusIcon() {
         return (isDone ? TICK : CROSS);
     }
 
     public void setIsDone(boolean isDone) {
         this.isDone = isDone;
-    }
-
-    public static void decreaseTaskCount(int i) {
-        taskCount = taskCount - i;
     }
 
     @Override

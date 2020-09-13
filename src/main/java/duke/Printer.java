@@ -25,6 +25,7 @@ public class Printer {
         System.out.println(border);
         System.out.println("Nice! I've deleted this task:");
         System.out.println(task);
+        System.out.printf("Now you have %d tasks in the list.\n", Task.getTaskCount());
         System.out.println(border);
     }
 

@@ -121,8 +121,9 @@ public class Duke {
 
     private static Task deleteTask(ArrayList<Task> tasks, String line) {
         int taskNumber = Integer.parseInt(line.substring(PARAM_DELETE.length()).trim()) - 1;
-        Task.decreaseTaskCount(1);
-        return tasks.remove(taskNumber);
+        Task deletedTask = tasks.remove(taskNumber);
+        Task.decreaseTaskCount();
+        return deletedTask;
     }
 
     private static int markTaskAsDone(ArrayList<Task> tasks, String line) {
