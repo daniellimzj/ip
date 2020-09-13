@@ -21,6 +21,13 @@ public class Printer {
         System.out.println(border);
     }
 
+    public static void printDeleteTaskMessage(Task task) {
+        System.out.println(border);
+        System.out.println("Nice! I've deleted this task:");
+        System.out.println(task);
+        System.out.println(border);
+    }
+
     public static void printDoneTaskMessage(Task task) {
         System.out.println(border);
         System.out.println("Nice! I've marked this task as done:");

@@ -19,6 +19,7 @@ public class Duke {
     private static final String PARAM_DONE = "done";
     private static final String PARAM_LIST = "list";
     private static final String PARAM_BYE = "bye";
+    private static final String PARAM_DELETE = "delete";
 
 
     public static void main(String[] args) {
@@ -39,7 +40,17 @@ public class Duke {
                     Printer.printDoneTaskMessage(tasks.get(taskNumber));
                 } catch (NumberFormatException e) {
                     Printer.printDoneErrorMessage();
-                } catch (NullPointerException e) {
+                } catch (NullPointerException | IndexOutOfBoundsException e) {
+                    Printer.printTaskNumberErrorMessage();
+                }
+
+            } else if (line.startsWith(PARAM_DELETE)) {
+                try {
+                    Task deletedTask = deleteTask(tasks, line);
+                    Printer.printDeleteTaskMessage(deletedTask);
+                } catch (NumberFormatException e) {
+                    Printer.printDoneErrorMessage();
+                } catch (NullPointerException | IndexOutOfBoundsException e) {
                     Printer.printTaskNumberErrorMessage();
                 }
 
@@ -108,8 +119,13 @@ public class Duke {
         tasks.add(new ToDo(todo));
     }
 
-    private static int markTaskAsDone(ArrayList<Task> tasks, String line) {
+    private static Task deleteTask(ArrayList<Task> tasks, String line) {
+        int taskNumber = Integer.parseInt(line.substring(PARAM_DELETE.length()).trim()) - 1;
+        Task.decreaseTaskCount(1);
+        return tasks.remove(taskNumber);
+    }
 
+    private static int markTaskAsDone(ArrayList<Task> tasks, String line) {
         int taskNumber = Integer.parseInt(line.substring(PARAM_DONE.length()).trim()) - 1;
         tasks.get(taskNumber).setIsDone(true);
         return taskNumber;

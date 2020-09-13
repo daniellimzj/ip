@@ -26,6 +26,10 @@ public class Task {
         this.isDone = isDone;
     }
 
+    public static void decreaseTaskCount(int i) {
+        taskCount = taskCount - i;
+    }
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
