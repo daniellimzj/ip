@@ -1,6 +1,7 @@
 package duke;
 
 import duke.task.Task;
+import java.util.ArrayList;
 
 public class Printer {
 
@@ -33,11 +34,11 @@ public class Printer {
         System.out.println(border);
     }
 
-    public static void printList(Task[] tasks) {
+    public static void printList(ArrayList<Task> tasks) {
         System.out.println(border);
         for (int i = 0; i < Task.getTaskCount(); i++) {
             System.out.print((i + 1) + ".");
-            System.out.println(tasks[i]);
+            System.out.println(tasks.get(i));
         }
         System.out.println(border);
     }

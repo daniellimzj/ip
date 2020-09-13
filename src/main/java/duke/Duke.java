@@ -6,11 +6,9 @@ import duke.task.Task;
 import duke.task.ToDo;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
-
-
-    private static final int MAX_LIST_CAPACITY = 100;
 
     private static final String PARAM_BY = "/by";
     private static final String PARAM_AT = "/at";
@@ -24,7 +22,7 @@ public class Duke {
 
 
     public static void main(String[] args) {
-        Task[] tasks = new Task[MAX_LIST_CAPACITY];
+        ArrayList<Task> tasks = new ArrayList<>();
         Printer.printWelcomeMessage();
 
         Scanner in = new Scanner(System.in);
@@ -38,7 +36,7 @@ public class Duke {
             } else if (line.startsWith(PARAM_DONE)) {
                 try {
                     int taskNumber = markTaskAsDone(tasks, line);
-                    Printer.printDoneTaskMessage(tasks[taskNumber]);
+                    Printer.printDoneTaskMessage(tasks.get(taskNumber));
                 } catch (NumberFormatException e) {
                     Printer.printDoneErrorMessage();
                 } catch (NullPointerException e) {
@@ -48,7 +46,7 @@ public class Duke {
             } else if (line.startsWith(PARAM_TODO)) {
                 try {
                     addToDo(tasks, line);
-                    Printer.printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
+                    Printer.printAddTaskMessage(tasks.get(Task.getTaskCount() - 1));
                 } catch (DukeException e) {
                     Printer.printDescriptionErrorMessage(PARAM_TODO);
                 }
@@ -56,7 +54,7 @@ public class Duke {
             } else if (line.startsWith(PARAM_DEADLINE)) {
                 try {
                     addDeadline(tasks, line);
-                    Printer.printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
+                    Printer.printAddTaskMessage(tasks.get(Task.getTaskCount() - 1));
                 } catch (StringIndexOutOfBoundsException e) {
                     Printer.printDescriptionErrorMessage(PARAM_DEADLINE);
                 }
@@ -64,7 +62,7 @@ public class Duke {
             } else if (line.startsWith(PARAM_EVENT)) {
                 try {
                     addEvent(tasks, line);
-                    Printer.printAddTaskMessage(tasks[Task.getTaskCount() - 1]);
+                    Printer.printAddTaskMessage(tasks.get(Task.getTaskCount() - 1));
                 } catch (StringIndexOutOfBoundsException e) {
                     Printer.printDescriptionErrorMessage(PARAM_EVENT);
                 }
@@ -78,7 +76,7 @@ public class Duke {
         Printer.printByeMessage();
     }
 
-    private static void addDeadline(Task[] tasks, String line) {
+    private static void addDeadline(ArrayList<Task> tasks, String line) {
 
         String deadline = line.substring(line.indexOf(PARAM_DEADLINE) + PARAM_DEADLINE.length());
         int firstIndexOfByCommand = deadline.indexOf(PARAM_BY);
@@ -86,10 +84,10 @@ public class Duke {
 
         String description = deadline.substring(0, firstIndexOfByCommand).trim();
         String by = deadline.substring(lastIndexOfByCommand).trim();
-        tasks[Task.getTaskCount()] = new Deadline(description, by);
+        tasks.add(new Deadline(description, by));
     }
 
-    private static void addEvent(Task[] tasks, String line) {
+    private static void addEvent(ArrayList<Task> tasks, String line) {
 
         String event = line.substring(line.indexOf(PARAM_EVENT) + PARAM_EVENT.length());
         int firstIndexOfAtCommand = event.indexOf(PARAM_AT);
@@ -97,23 +95,23 @@ public class Duke {
 
         String description = event.substring(0, firstIndexOfAtCommand).trim();
         String at = event.substring(lastIndexOfAtCommand).trim();
-        tasks[Task.getTaskCount()] = new Event(description, at);
+        tasks.add(new Event(description, at));
     }
 
-    private static void addToDo(Task[] tasks, String line) throws DukeException {
+    private static void addToDo(ArrayList<Task> tasks, String line) throws DukeException {
         String[] input = line.split(" ");
         if (input.length < 2) {
             throw new DukeException();
         }
 
         String todo = line.substring(line.indexOf(PARAM_TODO) + PARAM_TODO.length()).trim();
-        tasks[Task.getTaskCount()] = new ToDo(todo);
+        tasks.add(new ToDo(todo));
     }
 
-    private static int markTaskAsDone(Task[] tasks, String line) {
+    private static int markTaskAsDone(ArrayList<Task> tasks, String line) {
 
         int taskNumber = Integer.parseInt(line.substring(PARAM_DONE.length()).trim()) - 1;
-        tasks[taskNumber].setIsDone(true);
+        tasks.get(taskNumber).setIsDone(true);
         return taskNumber;
     }
 
