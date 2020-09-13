@@ -1,6 +1,9 @@
 package duke;
 
+import duke.task.Deadline;
+import duke.task.Event;
 import duke.task.Task;
+import duke.task.ToDo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,6 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class FileHandler {
@@ -31,13 +35,31 @@ public class FileHandler {
 
     }
 
-    public static void processFileContents(){
+    public static void processFileContents(Task[] tasks) throws DukeException{
         try {
             File f = new File(FILE_PATH);
             Scanner s = new Scanner(f);
             while (s.hasNext()) {
-                String[] task = s.nextLine().split(Task.getSeparator());
-                System.out.println(task);
+
+                String line = s.nextLine();
+                String[] task = line.split(Task.getSeparator());
+
+                switch (task[0]) {
+                case "T":
+                    tasks[Task.getTaskCount()] = new ToDo(task[2]);
+                    tasks[Task.getTaskCount() - 1].setIsDone(task[1].equals(Task.getTick()));
+                    break;
+                case "E":
+                    tasks[Task.getTaskCount()] = new Event(task[2], task[3]);
+                    tasks[Task.getTaskCount() - 1].setIsDone(task[1].equals(Task.getTick()));
+                    break;
+                case "D":
+                    tasks[Task.getTaskCount()] = new Deadline(task[2], task[3]);
+                    tasks[Task.getTaskCount() - 1].setIsDone(task[1].equals(Task.getTick()));
+                    break;
+                default:
+                    throw new DukeException();
+                }
             }
         } catch (FileNotFoundException e) {
             System.out.println("Oops, something went wrong!" + e.getMessage());

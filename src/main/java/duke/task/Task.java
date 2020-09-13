@@ -7,7 +7,7 @@ public class Task {
     private static int taskCount = 0;
     private static final String TICK = "\u2713";
     private static final String CROSS = "\u2718";
-    protected static final String SEPARATOR = "||||";
+    protected static final String SEPARATOR = "~#~";
 
     public Task(String description) {
         this.description = description;
@@ -38,6 +38,10 @@ public class Task {
 
     public static String getSeparator() {
         return SEPARATOR;
+    }
+
+    public static String getTick() {
+        return TICK;
     }
 
 }

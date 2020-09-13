@@ -28,6 +28,7 @@ public class Duke {
 
 
     public static void main(String[] args) {
+
         Task[] tasks = new Task[MAX_LIST_CAPACITY];
 
         Printer.printWelcomeMessage();
@@ -35,7 +36,11 @@ public class Duke {
         if (!FileHandler.getTasksFile()) {
             FileHandler.createTasksFile();
         } else {
-            FileHandler.processFileContents();
+            try {
+                FileHandler.processFileContents(tasks);
+            } catch (DukeException e) {
+                System.out.println("Unable to load values from text file");
+            }
         }
 
 
