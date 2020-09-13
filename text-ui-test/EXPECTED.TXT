@@ -52,5 +52,17 @@ Oops! Please input a task number that exists!
 3.[E][✘] finals (at: the end of the semester)
 ==================================================
 ==================================================
+Nice! I've deleted this task:
+[D][✓] do cs2113t project (by: the day after tomorrow)
+Now you have 2 tasks in the list.
+==================================================
+==================================================
+Oops! Please input a task number that exists!
+==================================================
+==================================================
+1.[T][✘] buy groceries!!!
+2.[E][✘] finals (at: the end of the semester)
+==================================================
+==================================================
 Bye. Hope to see you again soon!
 ==================================================
