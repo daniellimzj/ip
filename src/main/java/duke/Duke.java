@@ -5,7 +5,11 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
+
+import java.io.File;
 
 public class Duke {
 
@@ -25,7 +29,16 @@ public class Duke {
 
     public static void main(String[] args) {
         Task[] tasks = new Task[MAX_LIST_CAPACITY];
+
         Printer.printWelcomeMessage();
+
+        if (!FileHandler.getTasksFile()) {
+            FileHandler.createTasksFile();
+        } else {
+            FileHandler.processFileContents();
+        }
+
+
 
         Scanner in = new Scanner(System.in);
         String line = in.nextLine();
@@ -74,6 +87,12 @@ public class Duke {
             }
 
             line = in.nextLine();
+        }
+
+        try {
+            FileHandler.writeTasksToFile(tasks);
+        } catch (IOException e) {
+            System.out.println("Oops! something went wrong" + e.getMessage());
         }
         Printer.printByeMessage();
     }
