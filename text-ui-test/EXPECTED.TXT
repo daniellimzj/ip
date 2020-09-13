@@ -61,33 +61,24 @@ Oops! Please input a task number that exists!
 6.[E][✘] finals (at: the end of the semester)
 ==================================================
 ==================================================
-Unknown command!
+Nice! I've deleted this task:
+[E][✘] finals (at: the end of the semester)
+Now you have 5 tasks in the list.
 ==================================================
 ==================================================
-Unknown command!
+Nice! I've deleted this task:
+[D][✓] do cs2113t project (by: the day after tomorrow)
+Now you have 4 tasks in the list.
 ==================================================
 ==================================================
-Unknown command!
+Nice! I've deleted this task:
+[T][✘] buy groceries!!!
+Now you have 3 tasks in the list.
 ==================================================
 ==================================================
 1.[T][✘] sell groceries
 2.[D][✓] do cs2101 project (by: tomorrow)
 3.[E][✘] midterms (at: the middle of the sem)
-4.[T][✘] buy groceries!!!
-5.[D][✓] do cs2113t project (by: the day after tomorrow)
-6.[E][✘] finals (at: the end of the semester)
-==================================================
-==================================================
-Nice! I've deleted this task:
-[D][✓] do cs2113t project (by: the day after tomorrow)
-Now you have 2 tasks in the list.
-==================================================
-==================================================
-Oops! Please input a task number that exists!
-==================================================
-==================================================
-1.[T][✘] buy groceries!!!
-2.[E][✘] finals (at: the end of the semester)
 ==================================================
 ==================================================
 Bye. Hope to see you again soon!

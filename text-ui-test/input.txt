@@ -10,8 +10,8 @@ hello
 done 5
 done 18
 list
-delete 4
-delete 5
 delete 6
+delete 5
+delete 4
 list
 bye
