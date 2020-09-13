@@ -6,11 +6,14 @@
 |/
 ==================================================
 ==================================================
+1.[T][✘] sell groceries
+2.[D][✓] do cs2101 project (by: tomorrow)
+3.[E][✘] midterms (at: the middle of the sem)
 ==================================================
 ==================================================
 Got it. I've added this task:
   [T][✘] buy groceries!!!
-Now you have 1 tasks in the list.
+Now you have 4 tasks in the list.
 ==================================================
 ==================================================
 Oops! The format of the todo is incorrect!
@@ -18,7 +21,7 @@ Oops! The format of the todo is incorrect!
 ==================================================
 Got it. I've added this task:
   [D][✘] do cs2113t project (by: the day after tomorrow)
-Now you have 2 tasks in the list.
+Now you have 5 tasks in the list.
 ==================================================
 ==================================================
 Oops! The format of the deadline is incorrect!
@@ -26,15 +29,18 @@ Oops! The format of the deadline is incorrect!
 ==================================================
 Got it. I've added this task:
   [E][✘] finals (at: the end of the semester)
-Now you have 3 tasks in the list.
+Now you have 6 tasks in the list.
 ==================================================
 ==================================================
 Oops! The format of the event is incorrect!
 ==================================================
 ==================================================
-1.[T][✘] buy groceries!!!
-2.[D][✘] do cs2113t project (by: the day after tomorrow)
-3.[E][✘] finals (at: the end of the semester)
+1.[T][✘] sell groceries
+2.[D][✓] do cs2101 project (by: tomorrow)
+3.[E][✘] midterms (at: the middle of the sem)
+4.[T][✘] buy groceries!!!
+5.[D][✘] do cs2113t project (by: the day after tomorrow)
+6.[E][✘] finals (at: the end of the semester)
 ==================================================
 ==================================================
 Unknown command!
@@ -47,9 +53,29 @@ Nice! I've marked this task as done:
 Oops! Please input a task number that exists!
 ==================================================
 ==================================================
-1.[T][✘] buy groceries!!!
-2.[D][✓] do cs2113t project (by: the day after tomorrow)
-3.[E][✘] finals (at: the end of the semester)
+1.[T][✘] sell groceries
+2.[D][✓] do cs2101 project (by: tomorrow)
+3.[E][✘] midterms (at: the middle of the sem)
+4.[T][✘] buy groceries!!!
+5.[D][✓] do cs2113t project (by: the day after tomorrow)
+6.[E][✘] finals (at: the end of the semester)
+==================================================
+==================================================
+Unknown command!
+==================================================
+==================================================
+Unknown command!
+==================================================
+==================================================
+Unknown command!
+==================================================
+==================================================
+1.[T][✘] sell groceries
+2.[D][✓] do cs2101 project (by: tomorrow)
+3.[E][✘] midterms (at: the middle of the sem)
+4.[T][✘] buy groceries!!!
+5.[D][✓] do cs2113t project (by: the day after tomorrow)
+6.[E][✘] finals (at: the end of the semester)
 ==================================================
 ==================================================
 Nice! I've deleted this task:

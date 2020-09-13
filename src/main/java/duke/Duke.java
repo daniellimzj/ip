@@ -5,8 +5,12 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
+
+import java.io.File;
 
 public class Duke {
 
@@ -24,7 +28,20 @@ public class Duke {
 
     public static void main(String[] args) {
         ArrayList<Task> tasks = new ArrayList<>();
+
         Printer.printWelcomeMessage();
+
+        if (!FileHandler.getTasksFile()) {
+            FileHandler.createTasksFile();
+        } else {
+            try {
+                FileHandler.processFileContents(tasks);
+            } catch (DukeException e) {
+                System.out.println("Unable to load values from text file");
+            }
+        }
+
+
 
         Scanner in = new Scanner(System.in);
         String line = in.nextLine();
@@ -83,6 +100,12 @@ public class Duke {
             }
 
             line = in.nextLine();
+        }
+
+        try {
+            FileHandler.writeTasksToFile(tasks);
+        } catch (IOException e) {
+            System.out.println("Oops! something went wrong" + e.getMessage());
         }
         Printer.printByeMessage();
     }
