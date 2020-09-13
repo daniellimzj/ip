@@ -46,7 +46,7 @@ public class Printer {
     public static void printWelcomeMessage() {
         System.out.println(border);
         System.out.println(" _________________________");
-        System.out.println("| Hello! I'm duke.Duke         |");
+        System.out.println("| Hello! I'm Duke         |");
         System.out.println("| What can I do for you?  |");
         System.out.println("| ________________________|");
         System.out.println("|/");
