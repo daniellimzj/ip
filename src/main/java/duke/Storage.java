@@ -16,28 +16,33 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FileHandler {
+public class Storage {
 
-    private static final String FILE_PATH = "data/tasks.txt";
-    private static final String DIRECTORY_PATH = "data";
+    private String filePath;
+    private String directoryPath;
 
-    public static boolean getTasksFile() {
-        return Files.exists(Paths.get(FILE_PATH));
+    public Storage(String filePath) {
+        this.filePath = filePath;
+        this.directoryPath = filePath.substring(0, filePath.lastIndexOf("/"));
     }
 
-    public static void createTasksFile() {
+    public boolean getTasksFile() {
+        return Files.exists(Paths.get(filePath));
+    }
+
+    public void createTasksFile() {
         try {
-            Files.createDirectory(Paths.get(DIRECTORY_PATH));
-            Files.createFile(Paths.get(FILE_PATH));
+            Files.createDirectory(Paths.get(directoryPath));
+            Files.createFile(Paths.get(filePath));
         } catch (IOException e) {
             System.out.println("Oops! something went wrong" + e.getMessage());
         }
 
     }
 
-    public static void processFileContents(ArrayList<Task> tasks) throws DukeException {
+    public void processFileContents(ArrayList<Task> tasks) throws DukeException {
         try {
-            File f = new File(FILE_PATH);
+            File f = new File(filePath);
             Scanner s = new Scanner(f);
             while (s.hasNext()) {
 
@@ -66,8 +71,8 @@ public class FileHandler {
         }
     }
 
-    public static void writeTasksToFile(ArrayList<Task> tasks) throws IOException {
-        FileWriter fw = new FileWriter(FILE_PATH);
+    public void writeTasksToFile(ArrayList<Task> tasks) throws IOException {
+        FileWriter fw = new FileWriter(filePath);
         for (int i = 0; i < Task.getTaskCount(); i++) {
             fw.append(tasks.get(i).printToFile() + "\n");
         }

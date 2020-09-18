@@ -6,7 +6,6 @@ import duke.task.Task;
 import duke.task.ToDo;
 
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.ArrayList;
 
 
@@ -23,9 +22,11 @@ public class Duke {
     private static final String PARAM_DELETE = "delete";
 
     private Ui ui;
+    private Storage storage;
 
     public Duke() {
         ui = new Ui();
+        storage = new Storage("data/tasks.txt");
     }
 
     public static void main(String[] args) {
@@ -36,11 +37,11 @@ public class Duke {
 
         ArrayList<Task> tasks = new ArrayList<>();
 
-        if (!FileHandler.getTasksFile()) {
-            FileHandler.createTasksFile();
+        if (!storage.getTasksFile()) {
+            storage.createTasksFile();
         } else {
             try {
-                FileHandler.processFileContents(tasks);
+                storage.processFileContents(tasks);
             } catch (DukeException e) {
                 System.out.println("Unable to load values from text file");
             }
@@ -106,7 +107,7 @@ public class Duke {
         }
 
         try {
-            FileHandler.writeTasksToFile(tasks);
+            storage.writeTasksToFile(tasks);
         } catch (IOException e) {
             System.out.println("Oops! something went wrong" + e.getMessage());
         }
