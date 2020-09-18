@@ -14,7 +14,6 @@ public class Duke {
 
     private static final String PARAM_BY = "/by";
     private static final String PARAM_AT = "/at";
-
     private static final String PARAM_EVENT = "event";
     private static final String PARAM_DEADLINE = "deadline";
     private static final String PARAM_TODO = "todo";
@@ -23,11 +22,19 @@ public class Duke {
     private static final String PARAM_BYE = "bye";
     private static final String PARAM_DELETE = "delete";
 
+    private Ui ui;
+
+    public Duke() {
+        ui = new Ui();
+    }
 
     public static void main(String[] args) {
-        ArrayList<Task> tasks = new ArrayList<>();
+        new Duke().run();
+    }
 
-        Printer.printWelcomeMessage();
+    public void run() {
+
+        ArrayList<Task> tasks = new ArrayList<>();
 
         if (!FileHandler.getTasksFile()) {
             FileHandler.createTasksFile();
@@ -39,65 +46,63 @@ public class Duke {
             }
         }
 
+        ui.printWelcomeMessage();
+        String nextLine = ui.getNextLine();
 
+        while (!nextLine.equals(PARAM_BYE)) {
 
-        Scanner in = new Scanner(System.in);
-        String line = in.nextLine();
+            if (nextLine.equals(PARAM_LIST)) {
+                ui.printList(tasks);
 
-        while (!line.equals(PARAM_BYE)) {
-
-            if (line.equals(PARAM_LIST)) {
-                Printer.printList(tasks);
-
-            } else if (line.startsWith(PARAM_DONE)) {
+            } else if (nextLine.startsWith(PARAM_DONE)) {
                 try {
-                    int taskNumber = markTaskAsDone(tasks, line);
-                    Printer.printDoneTaskMessage(tasks.get(taskNumber));
+                    int taskNumber = markTaskAsDone(tasks, nextLine);
+                    ui.printDoneTaskMessage(tasks.get(taskNumber));
                 } catch (NumberFormatException e) {
-                    Printer.printDoneErrorMessage();
+                    ui.printDoneErrorMessage();
                 } catch (NullPointerException | IndexOutOfBoundsException e) {
-                    Printer.printTaskNumberErrorMessage();
+                    ui.printTaskNumberErrorMessage();
                 }
 
-            } else if (line.startsWith(PARAM_DELETE)) {
+            } else if (nextLine.startsWith(PARAM_DELETE)) {
                 try {
-                    Task deletedTask = deleteTask(tasks, line);
-                    Printer.printDeleteTaskMessage(deletedTask);
+                    Task deletedTask = deleteTask(tasks, nextLine);
+                    ui.printDeleteTaskMessage(deletedTask);
                 } catch (NumberFormatException e) {
-                    Printer.printDoneErrorMessage();
+                    ui.printDoneErrorMessage();
                 } catch (NullPointerException | IndexOutOfBoundsException e) {
-                    Printer.printTaskNumberErrorMessage();
+                    ui.printTaskNumberErrorMessage();
                 }
 
-            } else if (line.startsWith(PARAM_TODO)) {
+            } else if (nextLine.startsWith(PARAM_TODO)) {
                 try {
-                    addToDo(tasks, line);
-                    Printer.printAddTaskMessage(tasks.get(Task.getTaskCount() - 1));
+                    addToDo(tasks, nextLine);
+                    ui.printAddTaskMessage(tasks.get(Task.getTaskCount() - 1));
                 } catch (DukeException e) {
-                    Printer.printDescriptionErrorMessage(PARAM_TODO);
+                    ui.printDescriptionErrorMessage(PARAM_TODO);
                 }
 
-            } else if (line.startsWith(PARAM_DEADLINE)) {
+            } else if (nextLine.startsWith(PARAM_DEADLINE)) {
                 try {
-                    addDeadline(tasks, line);
-                    Printer.printAddTaskMessage(tasks.get(Task.getTaskCount() - 1));
+                    addDeadline(tasks, nextLine);
+                    ui.printAddTaskMessage(tasks.get(Task.getTaskCount() - 1));
                 } catch (StringIndexOutOfBoundsException e) {
-                    Printer.printDescriptionErrorMessage(PARAM_DEADLINE);
+                    ui.printDescriptionErrorMessage(PARAM_DEADLINE);
                 }
 
-            } else if (line.startsWith(PARAM_EVENT)) {
+            } else if (nextLine.startsWith(PARAM_EVENT)) {
                 try {
-                    addEvent(tasks, line);
-                    Printer.printAddTaskMessage(tasks.get(Task.getTaskCount() - 1));
+                    addEvent(tasks, nextLine);
+                    ui.printAddTaskMessage(tasks.get(Task.getTaskCount() - 1));
                 } catch (StringIndexOutOfBoundsException e) {
-                    Printer.printDescriptionErrorMessage(PARAM_EVENT);
+                    ui.printDescriptionErrorMessage(PARAM_EVENT);
                 }
 
             } else {
-                Printer.printErrorMessage();
+                ui.printErrorMessage();
             }
 
-            line = in.nextLine();
+            nextLine = ui.getNextLine();
         }
 
         try {
@@ -105,7 +110,7 @@ public class Duke {
         } catch (IOException e) {
             System.out.println("Oops! something went wrong" + e.getMessage());
         }
-        Printer.printByeMessage();
+        ui.printByeMessage();
     }
 
     private static void addDeadline(ArrayList<Task> tasks, String line) {
