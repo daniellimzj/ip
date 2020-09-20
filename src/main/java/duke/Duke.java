@@ -4,6 +4,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.time.format.DateTimeParseException;
 
 
@@ -88,6 +89,10 @@ public class Duke {
                 } catch (DateTimeParseException e) {
                     ui.printDateTimeParseErrorMessage();
                 }
+
+            } else if (parser.isFindCommand(nextLine)) {
+                ArrayList<Task> filteredTaskList = tasks.findTasks(parser.getFindParams(nextLine));
+                ui.printFilteredList(filteredTaskList);
 
             } else {
                 ui.printUnknownMessage();
