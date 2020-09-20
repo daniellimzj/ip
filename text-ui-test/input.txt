@@ -10,6 +10,8 @@ hello
 done 5
 done 18
 list
+find cs2101
+find hello my friend
 delete 6
 delete 5
 delete 4
