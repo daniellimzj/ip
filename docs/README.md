@@ -63,14 +63,14 @@ The `event` command adds an event with `DESCRIPTION` at `DATETIME` to the list.
 
 Usage: `event DESCRIPTION /at DATETIME`
 
-Example: `event my first midterm exam /at 01/10/20 10:01`
+Example: `event my first midterm exam /at 01-10-20 10:01`
  
 #### `deadline` Command
 The `deadline` command adds a deadline with `DESCRIPTION` to be done by `DATETIME` to the list.
 
 Usage: `deadline DESCRIPTION /by DATETIME`
 
-Example: `deadline my homework /by 31/12/20 23:59`
+Example: `deadline my homework /by 31-12-20 23:59`
 
 #### `list` Command
 The `list` command shows all the tasks in the list.
