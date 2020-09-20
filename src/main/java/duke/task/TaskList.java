@@ -25,4 +25,14 @@ public class TaskList {
     public void addTask(Task task) {
         tasks.add(task);
     }
+
+    public void markTaskAsDone(int taskNumber) {
+        getTask(taskNumber).setIsDone(true);
+    }
+
+    public Task deleteTask(int taskNumber) {
+        Task deletedTask = removeTask(taskNumber);
+        Task.decreaseTaskCount();
+        return deletedTask;
+    }
 }

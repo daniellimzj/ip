@@ -15,11 +15,9 @@ public class Ui {
         this.conversation = new Scanner(System.in);
     }
 
-
     public String getNextLine() {
         return conversation.nextLine();
     }
-
 
     public void printAddTaskMessage(Task task) {
         System.out.println(BORDER);
@@ -50,7 +48,7 @@ public class Ui {
         System.out.println(BORDER);
     }
 
-    public void printErrorMessage() {
+    public void printUnknownMessage() {
         System.out.println(BORDER);
         System.out.println ("Unknown command!");
         System.out.println(BORDER);
@@ -90,5 +88,9 @@ public class Ui {
         System.out.println(BORDER);
         System.out.println("Oops! Please input a number after done!");
         System.out.println(BORDER);
+    }
+
+    public void printGenericErrorMessage() {
+        System.out.println("Oops! Something went wrong!");
     }
 }
