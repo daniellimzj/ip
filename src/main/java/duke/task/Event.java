@@ -8,7 +8,7 @@ public class Event extends Task {
 
     public Event(String description, String at) {
         super(description);
-        this.at = LocalDateTime.parse(at, formatter);
+        this.at = LocalDateTime.parse(at.trim(), formatter);
     }
 
     /**
@@ -24,7 +24,7 @@ public class Event extends Task {
      * @param at 'at' in String format.
      */
     public void setAt(String at) {
-        this.at = LocalDateTime.parse(at, formatter);
+        this.at = LocalDateTime.parse(at.trim(), formatter);
     }
 
     /**

@@ -8,7 +8,7 @@ public class Deadline extends Task {
 
     public Deadline(String description, String by) {
         super(description);
-        this.by = LocalDateTime.parse(by, formatter);
+        this.by = LocalDateTime.parse(by.trim(), formatter);
     }
 
     /**
@@ -24,7 +24,7 @@ public class Deadline extends Task {
      * @param by 'by' in String format.
      */
     public void setBy(String by) {
-        this.by = LocalDateTime.parse(by, formatter);
+        this.by = LocalDateTime.parse(by.trim(), formatter);
     }
 
     /**

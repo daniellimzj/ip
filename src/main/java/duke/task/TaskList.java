@@ -1,14 +1,14 @@
 package duke.task;
 
+import duke.Parser;
+
 import java.util.ArrayList;
 
 import static java.util.stream.Collectors.toList;
 
 public class TaskList {
 
-    private static final int DESCRIPTION = 0;
-    private static final int BY = 1;
-    private static final int AT = 1;
+
 
     private ArrayList<Task> tasks;
     private int taskCount;
@@ -84,7 +84,7 @@ public class TaskList {
      * @param params String array holding the description and 'by' of the DeadLine.
      */
     public void addDeadline(String[] params) {
-        addTask(new Deadline(params[DESCRIPTION], params[BY]));
+        addTask(new Deadline(params[Parser.DESCRIPTION], params[Parser.BY]));
     }
 
     /**
@@ -92,7 +92,7 @@ public class TaskList {
      * @param params String array holding the description and 'at' of the Event.
      */
     public void addEvent(String[] params) {
-        addTask(new Event(params[DESCRIPTION], params[AT]));
+        addTask(new Event(params[Parser.DESCRIPTION], params[Parser.AT]));
     }
 
     /**

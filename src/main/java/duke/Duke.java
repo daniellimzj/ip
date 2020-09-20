@@ -74,7 +74,7 @@ public class Duke {
                 try {
                     tasks.addDeadline(parser.getDeadlineParams(nextLine));
                     ui.printAddTaskMessage(tasks);
-                } catch (StringIndexOutOfBoundsException e) {
+                } catch (StringIndexOutOfBoundsException | DukeException e) {
                     ui.printDescriptionErrorMessage(Parser.getParam("deadline"));
                 } catch (DateTimeParseException e) {
                     ui.printDateTimeParseErrorMessage();
@@ -84,7 +84,7 @@ public class Duke {
                 try {
                     tasks.addEvent(parser.getEventParams(nextLine));
                     ui.printAddTaskMessage(tasks);
-                } catch (StringIndexOutOfBoundsException e) {
+                } catch (StringIndexOutOfBoundsException | DukeException e) {
                     ui.printDescriptionErrorMessage(Parser.getParam("event"));
                 } catch (DateTimeParseException e) {
                     ui.printDateTimeParseErrorMessage();

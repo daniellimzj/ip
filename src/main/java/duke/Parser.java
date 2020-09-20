@@ -13,6 +13,11 @@ public class Parser {
     private static final String PARAM_DELETE = "delete";
     private static final String PARAM_FIND = "find";
 
+
+    public static final int DESCRIPTION = 0;
+    public static final int BY = 1;
+    public static final int AT = 1;
+
     public Parser() {
     }
 
@@ -102,16 +107,21 @@ public class Parser {
      * Returns description and 'by' of Deadline.
      * @param nextLine Command inputted by user.
      * @return Description and 'by' of Deadline as Strings.
+     * @throws DukeException If no description is provided.
      */
-    public String[] getDeadlineParams(String nextLine) {
+    public String[] getDeadlineParams(String nextLine) throws DukeException {
         String[] params = new String[2];
         String deadline = nextLine.substring(PARAM_DEADLINE.length());
 
         int firstIndexOfByCommand = deadline.indexOf(PARAM_BY);
         int lastIndexOfByCommand = firstIndexOfByCommand + PARAM_BY.length();
 
-        params[0] = deadline.substring(0, firstIndexOfByCommand).trim();
-        params[1] = deadline.substring(lastIndexOfByCommand).trim();
+        params[DESCRIPTION] = deadline.substring(0, firstIndexOfByCommand).trim();
+        params[BY] = deadline.substring(lastIndexOfByCommand).trim();
+
+        if (params[DESCRIPTION].isBlank()) {
+            throw new DukeException();
+        }
 
         return params;
     }
@@ -120,16 +130,21 @@ public class Parser {
      * Returns description and 'at' of Event.
      * @param nextLine Command inputted by user.
      * @return Description and 'at' of Event as Strings.
+     * @throws DukeException If no description is provided.
      */
-    public String[] getEventParams(String nextLine) {
+    public String[] getEventParams(String nextLine) throws DukeException{
         String[] params = new String[2];
         String event = nextLine.substring(PARAM_EVENT.length());
 
         int firstIndexOfAtCommand = event.indexOf(PARAM_AT);
         int lastIndexOfAtCommand = firstIndexOfAtCommand + PARAM_AT.length();
 
-        params[0] = event.substring(0, firstIndexOfAtCommand).trim();
-        params[1] = event.substring(lastIndexOfAtCommand).trim();
+        params[DESCRIPTION] = event.substring(0, firstIndexOfAtCommand).trim();
+        params[AT] = event.substring(lastIndexOfAtCommand).trim();
+
+        if (params[DESCRIPTION].isBlank()) {
+            throw new DukeException();
+        }
 
         return params;
     }
@@ -140,6 +155,6 @@ public class Parser {
      * @return Keyword to search for.
      */
     public String getFindParams(String nextLine) {
-        return nextLine.substring(PARAM_FIND.length());
+        return nextLine.substring(PARAM_FIND.length()).trim();
     }
 }
