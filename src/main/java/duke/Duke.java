@@ -35,17 +35,7 @@ public class Duke {
 
     public void run() {
 
-        ArrayList<Task> tasks = new ArrayList<>();
-
-        if (!storage.getTasksFile()) {
-            storage.createTasksFile();
-        } else {
-            try {
-                storage.processFileContents(tasks);
-            } catch (DukeException e) {
-                System.out.println("Unable to load values from text file");
-            }
-        }
+        ArrayList<Task> tasks = storage.load();
 
         ui.printWelcomeMessage();
         String nextLine = ui.getNextLine();

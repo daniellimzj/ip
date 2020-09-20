@@ -37,10 +37,28 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("Oops! something went wrong" + e.getMessage());
         }
-
     }
 
-    public void processFileContents(ArrayList<Task> tasks) throws DukeException {
+    public ArrayList<Task> load() {
+
+        ArrayList<Task> tasks = new ArrayList<>();
+        if (!getTasksFile()) {
+            createTasksFile();
+        } else {
+            try {
+                tasks = processFileContents();
+            } catch (DukeException e) {
+                System.out.println("Unable to load values from text file");
+            }
+        }
+        return tasks;
+    }
+
+
+    public ArrayList<Task> processFileContents() throws DukeException {
+
+        ArrayList<Task> tasks = new ArrayList<>();
+
         try {
             File f = new File(filePath);
             Scanner s = new Scanner(f);
@@ -69,6 +87,7 @@ public class Storage {
         } catch (FileNotFoundException e) {
             System.out.println("Oops, something went wrong!" + e.getMessage());
         }
+        return tasks;
     }
 
     public void writeTasksToFile(ArrayList<Task> tasks) throws IOException {
