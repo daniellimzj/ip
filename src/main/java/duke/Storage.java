@@ -53,21 +53,26 @@ public class Storage {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
 
+        int i = 0;
+
         while (s.hasNext()) {
             String line = s.nextLine();
             String[] task = line.split(Task.getSeparator());
             switch (task[0]) {
             case "T":
                 tasks.add(new ToDo(task[2]));
-                tasks.get(Task.getTaskCount() - 1).setIsDone(task[1].equals(Task.getTick()));
+                tasks.get(i).setIsDone(task[1].equals(Task.getTick()));
+                i++;
                 break;
             case "E":
                 tasks.add(new Event(task[2], task[3]));
-                tasks.get(Task.getTaskCount() - 1).setIsDone(task[1].equals(Task.getTick()));
+                tasks.get(i).setIsDone(task[1].equals(Task.getTick()));
+                i++;
                 break;
             case "D":
                 tasks.add(new Deadline(task[2], task[3]));
-                tasks.get(Task.getTaskCount() - 1).setIsDone(task[1].equals(Task.getTick()));
+                tasks.get(i).setIsDone(task[1].equals(Task.getTick()));
+                i++;
                 break;
             default:
                 throw new DukeException();
@@ -78,7 +83,7 @@ public class Storage {
 
     public void writeTasksToFile(TaskList tasks) throws IOException {
         FileWriter fw = new FileWriter(filePath);
-        for (int i = 0; i < Task.getTaskCount(); i++) {
+        for (int i = 0; i < tasks.getTaskCount(); i++) {
             fw.append(tasks.getTask(i).printToFile() + "\n");
         }
         fw.close();

@@ -3,8 +3,10 @@ todo buy groceries!!!
 todo
 deadline do cs2113t project /by the day after tomorrow
 deadline do cs2101 project /at tomorrow afternoon
+deadline do cs2101 project /by 25-09-20 18:00
 event finals /at the end of the semester
 event midterms /by week 7
+event finals /at 10-11-20 15:00
 list
 hello
 done 5

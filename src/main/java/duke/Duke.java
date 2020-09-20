@@ -5,6 +5,7 @@ import duke.task.TaskList;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.time.format.DateTimeParseException;
 
 
 public class Duke {
@@ -54,7 +55,7 @@ public class Duke {
                 try {
                     int taskNumber = parser.getIndexToDelete(nextLine);
                     Task deletedTask = tasks.deleteTask(taskNumber);
-                    ui.printDeleteTaskMessage(deletedTask);
+                    ui.printDeleteTaskMessage(deletedTask, tasks);
                 } catch (NumberFormatException e) {
                     ui.printDoneErrorMessage();
                 } catch (NullPointerException | IndexOutOfBoundsException e) {
@@ -64,7 +65,7 @@ public class Duke {
             } else if (parser.isAddToDoCommand(nextLine)) {
                 try {
                     tasks.addToDo(parser.getToDoParams(nextLine));
-                    ui.printAddTaskMessage(tasks.getLastTask());
+                    ui.printAddTaskMessage(tasks);
                 } catch (DukeException e) {
                     ui.printDescriptionErrorMessage(Parser.getParam("todo"));
                 }
@@ -72,17 +73,21 @@ public class Duke {
             } else if (parser.isAddDeadlineCommand(nextLine)) {
                 try {
                     tasks.addDeadline(parser.getDeadlineParams(nextLine));
-                    ui.printAddTaskMessage(tasks.getLastTask());
+                    ui.printAddTaskMessage(tasks);
                 } catch (StringIndexOutOfBoundsException e) {
                     ui.printDescriptionErrorMessage(Parser.getParam("deadline"));
+                } catch (DateTimeParseException e) {
+                    ui.printDateTimeParseErrorMessage();
                 }
 
             } else if (parser.isAddEventCommand(nextLine)) {
                 try {
                     tasks.addEvent(parser.getEventParams(nextLine));
-                    ui.printAddTaskMessage(tasks.getLastTask());
+                    ui.printAddTaskMessage(tasks);
                 } catch (StringIndexOutOfBoundsException e) {
                     ui.printDescriptionErrorMessage(Parser.getParam("event"));
+                } catch (DateTimeParseException e) {
+                    ui.printDateTimeParseErrorMessage();
                 }
 
             } else if (parser.isFindCommand(nextLine)) {

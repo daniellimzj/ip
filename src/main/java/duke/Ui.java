@@ -19,11 +19,11 @@ public class Ui {
         return conversation.nextLine();
     }
 
-    public void printAddTaskMessage(Task task) {
+    public void printAddTaskMessage(TaskList tasks) {
         System.out.println(BORDER);
         System.out.println("Got it. I've added this task:");
-        System.out.println("  " + task);
-        System.out.printf("Now you have %d tasks in the list.\n", Task.getTaskCount());
+        System.out.println("  " + tasks.getLastTask());
+        System.out.printf("Now you have %d tasks in the list.\n", tasks.getTaskCount());
         System.out.println(BORDER);
     }
 
@@ -33,11 +33,11 @@ public class Ui {
         System.out.println(BORDER);
     }
 
-    public void printDeleteTaskMessage(Task task) {
+    public void printDeleteTaskMessage(Task task, TaskList tasks) {
         System.out.println(BORDER);
         System.out.println("Nice! I've deleted this task:");
         System.out.println(task);
-        System.out.printf("Now you have %d tasks in the list.\n", Task.getTaskCount());
+        System.out.printf("Now you have %d tasks in the list.\n", tasks.getTaskCount());
         System.out.println(BORDER);
     }
 
@@ -56,7 +56,7 @@ public class Ui {
 
     public void printList(TaskList tasks) {
         System.out.println(BORDER);
-        for (int i = 0; i < Task.getTaskCount(); i++) {
+        for (int i = 0; i < tasks.getTaskCount(); i++) {
             System.out.print((i + 1) + ".");
             System.out.println(tasks.getTask(i));
         }
@@ -91,7 +91,15 @@ public class Ui {
     }
 
     public void printGenericErrorMessage() {
+        System.out.println(BORDER);
         System.out.println("Oops! Something went wrong!");
+        System.out.println(BORDER);
+    }
+
+    public void printDateTimeParseErrorMessage() {
+        System.out.println(BORDER);
+        System.out.println("Oops! Please make sure your date and time is in the format dd-mm-yy hh-mm!");
+        System.out.println(BORDER);
     }
 
     public void printFilteredList(ArrayList<Task> tasks) {

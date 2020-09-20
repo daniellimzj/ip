@@ -7,8 +7,8 @@
 ==================================================
 ==================================================
 1.[T][✘] sell groceries
-2.[D][✓] do cs2101 project (by: tomorrow)
-3.[E][✘] midterms (at: the middle of the sem)
+2.[D][✘] do cs2101 project (by: 30-09-20 23:59)
+3.[E][✘] midterms (at: 20-10-20 14:00)
 ==================================================
 ==================================================
 Got it. I've added this task:
@@ -19,55 +19,61 @@ Now you have 4 tasks in the list.
 Oops! The format of the todo is incorrect!
 ==================================================
 ==================================================
-Got it. I've added this task:
-  [D][✘] do cs2113t project (by: the day after tomorrow)
-Now you have 5 tasks in the list.
+Oops! Please make sure your date and time is in the format dd-mm-yy hh-mm!
 ==================================================
 ==================================================
 Oops! The format of the deadline is incorrect!
 ==================================================
 ==================================================
 Got it. I've added this task:
-  [E][✘] finals (at: the end of the semester)
-Now you have 6 tasks in the list.
+  [D][✘] do cs2101 project (by: 25-09-20 18:00)
+Now you have 5 tasks in the list.
+==================================================
+==================================================
+Oops! Please make sure your date and time is in the format dd-mm-yy hh-mm!
 ==================================================
 ==================================================
 Oops! The format of the event is incorrect!
 ==================================================
 ==================================================
+Got it. I've added this task:
+  [E][✘] finals (at: 10-11-20 15:00)
+Now you have 6 tasks in the list.
+==================================================
+==================================================
 1.[T][✘] sell groceries
-2.[D][✓] do cs2101 project (by: tomorrow)
-3.[E][✘] midterms (at: the middle of the sem)
+2.[D][✘] do cs2101 project (by: 30-09-20 23:59)
+3.[E][✘] midterms (at: 20-10-20 14:00)
 4.[T][✘] buy groceries!!!
-5.[D][✘] do cs2113t project (by: the day after tomorrow)
-6.[E][✘] finals (at: the end of the semester)
+5.[D][✘] do cs2101 project (by: 25-09-20 18:00)
+6.[E][✘] finals (at: 10-11-20 15:00)
 ==================================================
 ==================================================
 Unknown command!
 ==================================================
 ==================================================
 Nice! I've marked this task as done:
-[D][✓] do cs2113t project (by: the day after tomorrow)
+[D][✓] do cs2101 project (by: 25-09-20 18:00)
 ==================================================
 ==================================================
 Oops! Please input a task number that exists!
 ==================================================
 ==================================================
 1.[T][✘] sell groceries
-2.[D][✓] do cs2101 project (by: tomorrow)
-3.[E][✘] midterms (at: the middle of the sem)
+2.[D][✘] do cs2101 project (by: 30-09-20 23:59)
+3.[E][✘] midterms (at: 20-10-20 14:00)
 4.[T][✘] buy groceries!!!
-5.[D][✓] do cs2113t project (by: the day after tomorrow)
-6.[E][✘] finals (at: the end of the semester)
+5.[D][✓] do cs2101 project (by: 25-09-20 18:00)
+6.[E][✘] finals (at: 10-11-20 15:00)
 ==================================================
 ==================================================
 Nice! I've deleted this task:
-[E][✘] finals (at: the end of the semester)
+[E][✘] finals (at: 10-11-20 15:00)
 Now you have 5 tasks in the list.
 ==================================================
 ==================================================
 Nice! I've deleted this task:
-[D][✓] do cs2113t project (by: the day after tomorrow)
+[D][✓] do cs2101 project (by: 25-09-20 18:00)
 Now you have 4 tasks in the list.
 ==================================================
 ==================================================
@@ -77,8 +83,8 @@ Now you have 3 tasks in the list.
 ==================================================
 ==================================================
 1.[T][✘] sell groceries
-2.[D][✓] do cs2101 project (by: tomorrow)
-3.[E][✘] midterms (at: the middle of the sem)
+2.[D][✘] do cs2101 project (by: 30-09-20 23:59)
+3.[E][✘] midterms (at: 20-10-20 14:00)
 ==================================================
 ==================================================
 Bye. Hope to see you again soon!
