@@ -30,7 +30,7 @@ public class Duke {
         new Duke().run();
     }
 
-    public void run() {
+    private void run() {
 
         ui.printWelcomeMessage();
         String nextLine = ui.getNextLine();

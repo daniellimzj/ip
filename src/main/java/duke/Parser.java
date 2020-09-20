@@ -13,6 +13,14 @@ public class Parser {
     private static final String PARAM_DELETE = "delete";
     private static final String PARAM_FIND = "find";
 
+    public Parser() {
+    }
+
+    /**
+     * Returns the parameter taken as the command word for adding a type of Task.
+     * @param param The type of Task whose parameter is desired.
+     * @return Command word for adding a type of Task.
+     */
     public static String getParam(String param) {
         switch(param) {
         case ("todo"):
@@ -24,9 +32,6 @@ public class Parser {
         default:
             return "command";
         }
-    }
-
-    public Parser() {
     }
 
     public boolean isListCommand(String nextLine) {
@@ -61,14 +66,30 @@ public class Parser {
         return nextLine.startsWith(PARAM_FIND);
     }
 
+    /**
+     * Returns the index at which the desired Task should be marked done.
+     * @param nextLine Command inputted by user.
+     * @return Index at which desired Task should be marked done.
+     */
     public int getIndexToMarkAsDone(String nextLine) {
         return Integer.parseInt(nextLine.substring(PARAM_DONE.length()).trim()) - 1;
     }
 
+    /**
+     * Returns the index at which the desired Task should be deleted.
+     * @param nextLine Command inputted by user.
+     * @return Index at which desired Task should be deleted.
+     */
     public int getIndexToDelete(String nextLine) {
         return Integer.parseInt(nextLine.substring(PARAM_DELETE.length()).trim()) - 1;
     }
 
+    /**
+     * Returns description of ToDo.
+     * @param nextLine Command inputted by user.
+     * @return Description of the ToDo as a String.
+     * @throws DukeException If no description is provided.
+     */
     public String getToDoParams(String nextLine) throws DukeException {
         String[] input = nextLine.split(" ");
         if (input.length < 2) {
@@ -77,6 +98,11 @@ public class Parser {
         return nextLine.substring(nextLine.indexOf(PARAM_TODO) + PARAM_TODO.length()).trim();
     }
 
+    /**
+     * Returns description and 'by' of Deadline.
+     * @param nextLine Command inputted by user.
+     * @return Description and 'by' of Deadline as Strings.
+     */
     public String[] getDeadlineParams(String nextLine) {
         String[] params = new String[2];
         String deadline = nextLine.substring(PARAM_DEADLINE.length());
@@ -90,6 +116,11 @@ public class Parser {
         return params;
     }
 
+    /**
+     * Returns description and 'at' of Event.
+     * @param nextLine Command inputted by user.
+     * @return Description and 'at' of Event as Strings.
+     */
     public String[] getEventParams(String nextLine) {
         String[] params = new String[2];
         String event = nextLine.substring(PARAM_EVENT.length());
@@ -103,6 +134,11 @@ public class Parser {
         return params;
     }
 
+    /**
+     * Returns the keyword used to find Tasks in the TaskList.
+     * @param nextLine Command inputted by user.
+     * @return Keyword to search for.
+     */
     public String getFindParams(String nextLine) {
         return nextLine.substring(PARAM_FIND.length());
     }
