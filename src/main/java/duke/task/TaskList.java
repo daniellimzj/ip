@@ -2,6 +2,8 @@ package duke.task;
 
 import java.util.ArrayList;
 
+import static java.util.stream.Collectors.toList;
+
 public class TaskList {
 
     private static final int DESCRIPTION = 0;
@@ -50,5 +52,11 @@ public class TaskList {
 
     public void addEvent(String[] params) {
         addTask(new Event(params[DESCRIPTION], params[AT]));
+    }
+
+    public ArrayList<Task> findTasks(String filter) {
+        return (ArrayList<Task>) tasks.stream()
+                .filter((t) -> t.toString().contains(filter))
+                .collect(toList());
     }
 }

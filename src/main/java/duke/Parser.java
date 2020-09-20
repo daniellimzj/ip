@@ -11,6 +11,7 @@ public class Parser {
     private static final String PARAM_LIST = "list";
     private static final String PARAM_BYE = "bye";
     private static final String PARAM_DELETE = "delete";
+    private static final String PARAM_FIND = "find";
 
     public static String getParam(String param) {
         switch(param) {
@@ -56,6 +57,10 @@ public class Parser {
         return nextLine.startsWith(PARAM_EVENT);
     }
 
+    public boolean isFindCommand(String nextLine) {
+        return nextLine.startsWith(PARAM_FIND);
+    }
+
     public int getIndexToMarkAsDone(String nextLine) {
         return Integer.parseInt(nextLine.substring(PARAM_DONE.length()).trim()) - 1;
     }
@@ -96,5 +101,9 @@ public class Parser {
         params[1] = event.substring(lastIndexOfAtCommand).trim();
 
         return params;
+    }
+
+    public String getFindParams(String nextLine) {
+        return nextLine.substring(PARAM_FIND.length());
     }
 }

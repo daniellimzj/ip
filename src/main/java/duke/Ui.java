@@ -3,6 +3,7 @@ package duke;
 import duke.task.Task;
 import duke.task.TaskList;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -91,5 +92,19 @@ public class Ui {
 
     public void printGenericErrorMessage() {
         System.out.println("Oops! Something went wrong!");
+    }
+
+    public void printFilteredList(ArrayList<Task> tasks) {
+        System.out.println(BORDER);
+        if (tasks.size() == 0) {
+            System.out.println("There are no matching tasks!");
+        } else {
+            System.out.println("Here are the matching tasks in the list:");
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.print((i + 1) + ".");
+                System.out.println(tasks.get(i));
+            }
+        }
+        System.out.println(BORDER);
     }
 }

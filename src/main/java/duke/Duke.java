@@ -4,6 +4,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class Duke {
@@ -83,6 +84,10 @@ public class Duke {
                 } catch (StringIndexOutOfBoundsException e) {
                     ui.printDescriptionErrorMessage(Parser.getParam("event"));
                 }
+
+            } else if (parser.isFindCommand(nextLine)) {
+                ArrayList<Task> filteredTaskList = tasks.findTasks(parser.getFindParams(nextLine));
+                ui.printFilteredList(filteredTaskList);
 
             } else {
                 ui.printUnknownMessage();
