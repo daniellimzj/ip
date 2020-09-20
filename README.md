@@ -55,39 +55,53 @@ If the status icons in lists do not display properly, experiment with changing t
 
 #### `todo` Command
 The `todo` adds a to-do with `DESCRIPTION` to the list.
+
 Usage: `todo DESCRIPTION`
+
 Example: `todo my laundry`
 
 #### `event` Command
 The `event` command adds an event with `DESCRIPTION` at `DATETIME` to the list.
+
 Usage: `event DESCRIPTION /at DATETIME`
+
 Example: `event my first midterm exam /at 01/10/20 10:01`
  
 #### `deadline` Command
 The `deadline` command adds a deadline with `DESCRIPTION` to be done by `DATETIME` to the list.
+
 Usage: `deadline DESCRIPTION /by DATETIME`
+
 Example: `deadline my homework /by 31/12/20 23:59`
 
 #### `list` Command
 The `list` command shows all the tasks in the list.
+
 Usage: `list`
 
 #### `done` Command
 The `done` command marks the task in the list at that `INDEX` as done.
+
 Usage: `done INDEX`
+
 Example: `done 1` 
 
 #### `delete` Command
 The `delete` command deletes the task in the list at a particular `INDEX`.
+
 Usage: `delete INDEX`
+
 Example: `delete 4`
 
 #### `find` Command
 The `find` command shows all the tasks in the list containing a `KEYWORD`.
+
 Usage: `find KEYWORD`
+
 Example: `find essay`
 
 ### `bye` Command
 The `bye` command exits the program and saves your tasks to a file for future usage.
+
 Usage: `bye`
 
