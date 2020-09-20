@@ -68,8 +68,7 @@ public class Duke {
 
             } else if (parser.isAddToDoCommand(nextLine)) {
                 try {
-                    String todo = parser.getToDoParams(nextLine);
-                    tasks.addTask(new ToDo(todo));
+                    tasks.addToDo(parser.getToDoParams(nextLine));
                     ui.printAddTaskMessage(tasks.getLastTask());
                 } catch (DukeException e) {
                     ui.printDescriptionErrorMessage(Parser.getParam("todo"));
@@ -77,8 +76,7 @@ public class Duke {
 
             } else if (parser.isAddDeadlineCommand(nextLine)) {
                 try {
-                    String[] params = parser.getDeadlineParams(nextLine);
-                    tasks.addTask(new Deadline(params[0], params[1]));
+                    tasks.addDeadline(parser.getDeadlineParams(nextLine));
                     ui.printAddTaskMessage(tasks.getLastTask());
                 } catch (StringIndexOutOfBoundsException e) {
                     ui.printDescriptionErrorMessage(Parser.getParam("deadline"));
@@ -86,8 +84,7 @@ public class Duke {
 
             } else if (parser.isAddEventCommand(nextLine)) {
                 try {
-                    String[] params = parser.getEventParams(nextLine);
-                    tasks.addTask(new Event(params[0], params[1]));
+                    tasks.addEvent(parser.getEventParams(nextLine));
                     ui.printAddTaskMessage(tasks.getLastTask());
                 } catch (StringIndexOutOfBoundsException e) {
                     ui.printDescriptionErrorMessage(Parser.getParam("event"));
