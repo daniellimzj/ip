@@ -9,21 +9,28 @@ public class TaskList {
     private static final int AT = 1;
 
     private ArrayList<Task> tasks;
+    private int taskCount;
 
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
+        this.taskCount = tasks.size();
     }
 
     private void addTask(Task task) {
         tasks.add(task);
+        taskCount++;
     }
 
     public Task getTask(int i) {
         return tasks.get(i);
     }
 
+    public int getTaskCount() {
+        return taskCount;
+    }
+
     public Task getLastTask() {
-        return tasks.get(Task.getTaskCount() - 1);
+        return tasks.get(getTaskCount() - 1);
     }
 
     public Task removeTask(int i) {
@@ -36,7 +43,7 @@ public class TaskList {
 
     public Task deleteTask(int taskNumber) {
         Task deletedTask = removeTask(taskNumber);
-        Task.decreaseTaskCount();
+        taskCount--;
         return deletedTask;
     }
 

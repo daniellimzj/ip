@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.time.format.DateTimeFormatter;
+
 public class Task {
 
     protected String description;
@@ -10,18 +12,11 @@ public class Task {
     private static final String CROSS = "\u2718";
     protected static final String SEPARATOR = "~#~";
 
+    protected static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy HH:mm");
+
     public Task(String description) {
         this.description = description;
         this.isDone = false;
-        taskCount++;
-    }
-
-    public static int getTaskCount() {
-        return taskCount;
-    }
-
-    public static void decreaseTaskCount() {
-        taskCount = taskCount - 1;
     }
 
     public String getStatusIcon() {
