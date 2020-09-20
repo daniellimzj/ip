@@ -7,6 +7,8 @@ import duke.task.Deadline;
 import duke.task.TaskList;
 
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
@@ -21,7 +23,11 @@ public class Duke {
         ui = new Ui();
         parser = new Parser();
         storage = new Storage("data/tasks.txt");
-        tasks = new TaskList(storage.load());
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (IOException | DukeException e) {
+            ui.printGenericErrorMessage();
+        }
     }
 
     public static void main(String[] args) {

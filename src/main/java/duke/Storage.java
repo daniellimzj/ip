@@ -27,61 +27,47 @@ public class Storage {
         return Files.exists(Paths.get(filePath));
     }
 
-    private void createTasksFile() {
-        try {
-            Files.createDirectory(Paths.get(directoryPath));
-            Files.createFile(Paths.get(filePath));
-        } catch (IOException e) {
-            System.out.println("Oops! something went wrong" + e.getMessage());
-        }
+    private void createTasksFile() throws IOException{
+        Files.createDirectory(Paths.get(directoryPath));
+        Files.createFile(Paths.get(filePath));
     }
 
-    public ArrayList<Task> load() {
+    public ArrayList<Task> load() throws IOException, DukeException {
         ArrayList<Task> tasks = new ArrayList<>();
         if (!getTasksFile()) {
             createTasksFile();
         } else {
-            try {
-                tasks = processFileContents();
-            } catch (DukeException e) {
-                System.out.println("Unable to load values from text file");
-            }
+            tasks = processFileContents();
         }
         return tasks;
     }
 
 
-    private ArrayList<Task> processFileContents() throws DukeException {
+    private ArrayList<Task> processFileContents() throws DukeException, FileNotFoundException {
 
         ArrayList<Task> tasks = new ArrayList<>();
+        File f = new File(filePath);
+        Scanner s = new Scanner(f);
 
-        try {
-            File f = new File(filePath);
-            Scanner s = new Scanner(f);
-            while (s.hasNext()) {
-
-                String line = s.nextLine();
-                String[] task = line.split(Task.getSeparator());
-
-                switch (task[0]) {
-                case "T":
-                    tasks.add(new ToDo(task[2]));
-                    tasks.get(Task.getTaskCount() - 1).setIsDone(task[1].equals(Task.getTick()));
-                    break;
-                case "E":
-                    tasks.add(new Event(task[2], task[3]));
-                    tasks.get(Task.getTaskCount() - 1).setIsDone(task[1].equals(Task.getTick()));
-                    break;
-                case "D":
-                    tasks.add(new Deadline(task[2], task[3]));
-                    tasks.get(Task.getTaskCount() - 1).setIsDone(task[1].equals(Task.getTick()));
-                    break;
-                default:
-                    throw new DukeException();
-                }
+        while (s.hasNext()) {
+            String line = s.nextLine();
+            String[] task = line.split(Task.getSeparator());
+            switch (task[0]) {
+            case "T":
+                tasks.add(new ToDo(task[2]));
+                tasks.get(Task.getTaskCount() - 1).setIsDone(task[1].equals(Task.getTick()));
+                break;
+            case "E":
+                tasks.add(new Event(task[2], task[3]));
+                tasks.get(Task.getTaskCount() - 1).setIsDone(task[1].equals(Task.getTick()));
+                break;
+            case "D":
+                tasks.add(new Deadline(task[2], task[3]));
+                tasks.get(Task.getTaskCount() - 1).setIsDone(task[1].equals(Task.getTick()));
+                break;
+            default:
+                throw new DukeException();
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("Oops, something went wrong!" + e.getMessage());
         }
         return tasks;
     }
