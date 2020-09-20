@@ -74,7 +74,6 @@ public class Parser {
 
     public String[] getDeadlineParams(String nextLine) {
         String[] params = new String[2];
-
         String deadline = nextLine.substring(PARAM_DEADLINE.length());
 
         int firstIndexOfByCommand = deadline.indexOf(PARAM_BY);
@@ -88,7 +87,6 @@ public class Parser {
 
     public String[] getEventParams(String nextLine) {
         String[] params = new String[2];
-
         String event = nextLine.substring(PARAM_EVENT.length());
 
         int firstIndexOfAtCommand = event.indexOf(PARAM_AT);

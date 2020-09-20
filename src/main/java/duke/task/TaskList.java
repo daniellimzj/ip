@@ -51,5 +51,4 @@ public class TaskList {
     public void addEvent(String[] params) {
         addTask(new Event(params[DESCRIPTION], params[AT]));
     }
-
 }

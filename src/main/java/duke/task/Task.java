@@ -4,6 +4,7 @@ public class Task {
 
     protected String description;
     protected boolean isDone;
+
     private static int taskCount = 0;
     private static final String TICK = "\u2713";
     private static final String CROSS = "\u2718";
@@ -47,5 +48,4 @@ public class Task {
     public static String getTick() {
         return TICK;
     }
-
 }

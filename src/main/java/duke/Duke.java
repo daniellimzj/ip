@@ -98,6 +98,4 @@ public class Duke {
         }
         ui.printByeMessage();
     }
-
-
 }
