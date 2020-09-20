@@ -15,10 +15,18 @@ public class Ui {
         this.conversation = new Scanner(System.in);
     }
 
+    /**
+     * Returns a String of the user's next input line.
+     * @return User's next input line.
+     */
     public String getNextLine() {
         return conversation.nextLine();
     }
 
+    /**
+     * Prints a message telling the user a Task has been added.
+     * @param tasks TaskList the Task has been added to.
+     */
     public void printAddTaskMessage(TaskList tasks) {
         System.out.println(BORDER);
         System.out.println("Got it. I've added this task:");
@@ -27,12 +35,20 @@ public class Ui {
         System.out.println(BORDER);
     }
 
+    /**
+     * Prints a message to say goodbye to the user.
+     */
     public void printByeMessage() {
         System.out.println(BORDER);
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println(BORDER);
     }
 
+    /**
+     * Prints a message telling the user a Task has been deleted.
+     * @param task Deleted Task.
+     * @param tasks TaskList the Task has been deleted from.
+     */
     public void printDeleteTaskMessage(Task task, TaskList tasks) {
         System.out.println(BORDER);
         System.out.println("Nice! I've deleted this task:");
@@ -41,6 +57,10 @@ public class Ui {
         System.out.println(BORDER);
     }
 
+    /**
+     * Print a message telling the user a Task has been marked as done.
+     * @param task Task marked as done.
+     */
     public void printDoneTaskMessage(Task task) {
         System.out.println(BORDER);
         System.out.println("Nice! I've marked this task as done:");
@@ -48,12 +68,19 @@ public class Ui {
         System.out.println(BORDER);
     }
 
+    /**
+     * Prints a message for when the user inputs an invalid command.
+     */
     public void printUnknownMessage() {
         System.out.println(BORDER);
         System.out.println ("Unknown command!");
         System.out.println(BORDER);
     }
 
+    /**
+     * Prints a list of all Tasks in the TaskList.
+     * @param tasks TaskList to be printed.
+     */
     public void printList(TaskList tasks) {
         System.out.println(BORDER);
         for (int i = 0; i < tasks.getTaskCount(); i++) {
@@ -63,6 +90,9 @@ public class Ui {
         System.out.println(BORDER);
     }
 
+    /**
+     * Prints a message to welcome the user.
+     */
     public void printWelcomeMessage() {
         System.out.println(BORDER);
         System.out.println(" _________________________");
@@ -72,36 +102,57 @@ public class Ui {
         System.out.println("|/");
         System.out.println(BORDER);
     }
+
+    /**
+     * Prints a message when the user inputs an incorrectly formatted command to add a Task.
+     * @param task Task which has the incorrect format.
+     */
     public void printDescriptionErrorMessage(String task) {
         System.out.println(BORDER);
         System.out.println("Oops! The format of the " + task + " is incorrect!");
         System.out.println(BORDER);
     }
 
+    /**
+     * Prints a message when the user inputs a Task number that does not exist.
+     */
     public void printTaskNumberErrorMessage() {
         System.out.println(BORDER);
         System.out.println("Oops! Please input a task number that exists!");
         System.out.println(BORDER);
     }
 
+    /**
+     * Prints a message when the user inputs an incorrectly formatted command to mark a Task as done.
+     */
     public void printDoneErrorMessage() {
         System.out.println(BORDER);
         System.out.println("Oops! Please input a number after done!");
         System.out.println(BORDER);
     }
 
+    /**
+     * Prints a generic error message for all other errors.
+     */
     public void printGenericErrorMessage() {
         System.out.println(BORDER);
         System.out.println("Oops! Something went wrong!");
         System.out.println(BORDER);
     }
 
+    /**
+     * Prints a message when the user inputs an incorrectly formatted date or time.
+     */
     public void printDateTimeParseErrorMessage() {
         System.out.println(BORDER);
         System.out.println("Oops! Please make sure your date and time is in the format dd-mm-yy hh-mm!");
         System.out.println(BORDER);
     }
 
+    /**
+     * Prints an ArrayList of Tasks.
+     * @param tasks ArrayList to be printed.
+     */
     public void printFilteredList(ArrayList<Task> tasks) {
         System.out.println(BORDER);
         if (tasks.size() == 0) {

@@ -36,17 +36,6 @@ public class Storage {
         Files.createFile(Paths.get(filePath));
     }
 
-    public ArrayList<Task> load() throws IOException, DukeException {
-        ArrayList<Task> tasks = new ArrayList<>();
-        if (!getTasksFile()) {
-            createTasksFile();
-        } else {
-            tasks = processFileContents();
-        }
-        return tasks;
-    }
-
-
     private ArrayList<Task> processFileContents() throws DukeException, FileNotFoundException {
 
         ArrayList<Task> tasks = new ArrayList<>();
@@ -81,6 +70,29 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Returns ArrayList of Tasks that were previously saved.
+     * If no tasks were saved, an empty save file is created and an empty ArrayList is returned.
+     *
+     * @return ArrayList of previously saved Tasks.
+     * @throws IOException If there is an error creating the empty save file, or reading from an existing file.
+     * @throws DukeException If there is a problem with the file contents.
+     */
+    public ArrayList<Task> load() throws IOException, DukeException {
+        ArrayList<Task> tasks = new ArrayList<>();
+        if (!getTasksFile()) {
+            createTasksFile();
+        } else {
+            tasks = processFileContents();
+        }
+        return tasks;
+    }
+
+    /**
+     * Writes all current Tasks to the save file.
+     * @param tasks TaskList of all current Tasks.
+     * @throws IOException if there is a problem opening or writing to the file.
+     */
     public void writeTasksToFile(TaskList tasks) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         for (int i = 0; i < tasks.getTaskCount(); i++) {
