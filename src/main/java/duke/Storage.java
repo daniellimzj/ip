@@ -1,9 +1,6 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
+import duke.task.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,11 +23,11 @@ public class Storage {
         this.directoryPath = filePath.substring(0, filePath.lastIndexOf("/"));
     }
 
-    public boolean getTasksFile() {
+    private boolean getTasksFile() {
         return Files.exists(Paths.get(filePath));
     }
 
-    public void createTasksFile() {
+    private void createTasksFile() {
         try {
             Files.createDirectory(Paths.get(directoryPath));
             Files.createFile(Paths.get(filePath));
@@ -40,7 +37,6 @@ public class Storage {
     }
 
     public ArrayList<Task> load() {
-
         ArrayList<Task> tasks = new ArrayList<>();
         if (!getTasksFile()) {
             createTasksFile();
@@ -55,7 +51,7 @@ public class Storage {
     }
 
 
-    public ArrayList<Task> processFileContents() throws DukeException {
+    private ArrayList<Task> processFileContents() throws DukeException {
 
         ArrayList<Task> tasks = new ArrayList<>();
 
@@ -90,10 +86,10 @@ public class Storage {
         return tasks;
     }
 
-    public void writeTasksToFile(ArrayList<Task> tasks) throws IOException {
+    public void writeTasksToFile(TaskList tasks) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         for (int i = 0; i < Task.getTaskCount(); i++) {
-            fw.append(tasks.get(i).printToFile() + "\n");
+            fw.append(tasks.getTask(i).printToFile() + "\n");
         }
         fw.close();
     }

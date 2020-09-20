@@ -1,6 +1,8 @@
 package duke;
 
 import duke.task.Task;
+import duke.task.TaskList;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -54,11 +56,11 @@ public class Ui {
         System.out.println(BORDER);
     }
 
-    public void printList(ArrayList<Task> tasks) {
+    public void printList(TaskList tasks) {
         System.out.println(BORDER);
         for (int i = 0; i < Task.getTaskCount(); i++) {
             System.out.print((i + 1) + ".");
-            System.out.println(tasks.get(i));
+            System.out.println(tasks.getTask(i));
         }
         System.out.println(BORDER);
     }
