@@ -83,10 +83,15 @@ public class Ui {
      */
     public void printList(TaskList tasks) {
         System.out.println(BORDER);
-        for (int i = 0; i < tasks.getTaskCount(); i++) {
-            System.out.print((i + 1) + ".");
-            System.out.println(tasks.getTask(i));
+        if (tasks.getTaskCount() > 0) {
+            for (int i = 0; i < tasks.getTaskCount(); i++) {
+                System.out.print((i + 1) + ".");
+                System.out.println(tasks.getTask(i));
+            }
+        } else {
+            System.out.println("There are no tasks in the list!");
         }
+
         System.out.println(BORDER);
     }
 
@@ -110,6 +115,19 @@ public class Ui {
     public void printDescriptionErrorMessage(String task) {
         System.out.println(BORDER);
         System.out.println("Oops! The format of the " + task + " is incorrect!");
+        switch(task) {
+        case ("todo"):
+            System.out.println("Format for todo: todo DESCRIPTION");
+            break;
+        case ("event"):
+            System.out.println("Format for event: event DESCRIPTION /at dd-mm-yy hh:mm");
+            break;
+        case ("deadline"):
+            System.out.println("Format for deadline: deadline DESCRIPTION /by dd-mm-yy hh:mm");
+            break;
+        default:
+            break;
+        }
         System.out.println(BORDER);
     }
 
