@@ -2,14 +2,10 @@ package duke;
 
 import duke.parser.Parser;
 import duke.storage.Storage;
-import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.time.format.DateTimeParseException;
-
 
 public class Duke {
 
