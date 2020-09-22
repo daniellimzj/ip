@@ -173,6 +173,12 @@ public class Parser {
         return nextLine.substring(PARAM_FIND.length()).trim();
     }
 
+    /**
+     * Runs the conversation between Duke and the user.
+     *
+     * @param tasks The TaskList holding all saved Tasks so far.
+     * @param ui The Ui to print messages to the user.
+     */
     public void runConversation(TaskList tasks, Ui ui) {
 
         String nextLine = ui.getNextLine();
