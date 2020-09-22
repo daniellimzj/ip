@@ -1,5 +1,6 @@
-package duke;
+package duke.storage;
 
+import duke.DukeException;
 import duke.task.Task;
 import duke.task.ToDo;
 import duke.task.Event;
@@ -31,11 +32,18 @@ public class Storage {
         return Files.exists(Paths.get(filePath));
     }
 
-    private void createTasksFile() throws IOException{
+    private void createTasksFile() throws IOException {
         Files.createDirectory(Paths.get(directoryPath));
         Files.createFile(Paths.get(filePath));
     }
 
+    /**
+     * Returns an ArrayList of Tasks that were previously saved to the file.
+     *
+     * @return ArrayList of previously saved Tasks.
+     * @throws DukeException If there is a problem with the contents of the file.
+     * @throws FileNotFoundException If there is a problem opening the file.
+     */
     private ArrayList<Task> processFileContents() throws DukeException, FileNotFoundException {
 
         ArrayList<Task> tasks = new ArrayList<>();
@@ -90,6 +98,7 @@ public class Storage {
 
     /**
      * Writes all current Tasks to the save file.
+     *
      * @param tasks TaskList of all current Tasks.
      * @throws IOException if there is a problem opening or writing to the file.
      */

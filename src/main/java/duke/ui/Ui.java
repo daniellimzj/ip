@@ -1,4 +1,4 @@
-package duke;
+package duke.ui;
 
 import duke.task.Task;
 import duke.task.TaskList;
@@ -17,6 +17,7 @@ public class Ui {
 
     /**
      * Returns a String of the user's next input line.
+     *
      * @return User's next input line.
      */
     public String getNextLine() {
@@ -25,6 +26,7 @@ public class Ui {
 
     /**
      * Prints a message telling the user a Task has been added.
+     *
      * @param tasks TaskList the Task has been added to.
      */
     public void printAddTaskMessage(TaskList tasks) {
@@ -46,6 +48,7 @@ public class Ui {
 
     /**
      * Prints a message telling the user a Task has been deleted.
+     *
      * @param task Deleted Task.
      * @param tasks TaskList the Task has been deleted from.
      */
@@ -58,7 +61,8 @@ public class Ui {
     }
 
     /**
-     * Print a message telling the user a Task has been marked as done.
+     * Prints a message telling the user a Task has been marked as done.
+     *
      * @param task Task marked as done.
      */
     public void printDoneTaskMessage(Task task) {
@@ -79,17 +83,21 @@ public class Ui {
 
     /**
      * Prints a list of all Tasks in the TaskList.
+     *
      * @param tasks TaskList to be printed.
      */
     public void printList(TaskList tasks) {
         System.out.println(BORDER);
-        if (tasks.getTaskCount() > 0) {
-            for (int i = 0; i < tasks.getTaskCount(); i++) {
-                System.out.print((i + 1) + ".");
-                System.out.println(tasks.getTask(i));
-            }
-        } else {
+
+        if (tasks.getTaskCount() == 0) {
             System.out.println("There are no tasks in the list!");
+            System.out.println(BORDER);
+            return;
+        }
+
+       for (int i = 0; i < tasks.getTaskCount(); i++) {
+            System.out.print((i + 1) + ".");
+            System.out.println(tasks.getTask(i));
         }
 
         System.out.println(BORDER);
@@ -110,6 +118,7 @@ public class Ui {
 
     /**
      * Prints a message when the user inputs an incorrectly formatted command to add a Task.
+     *
      * @param task Task which has the incorrect format.
      */
     public void printDescriptionErrorMessage(String task) {
@@ -169,18 +178,22 @@ public class Ui {
 
     /**
      * Prints an ArrayList of Tasks.
+     *
      * @param tasks ArrayList to be printed.
      */
     public void printFilteredList(ArrayList<Task> tasks) {
         System.out.println(BORDER);
+
         if (tasks.size() == 0) {
             System.out.println("There are no matching tasks!");
-        } else {
-            System.out.println("Here are the matching tasks in the list:");
-            for (int i = 0; i < tasks.size(); i++) {
-                System.out.print((i + 1) + ".");
-                System.out.println(tasks.get(i));
-            }
+            System.out.println(BORDER);
+            return;
+        }
+
+        System.out.println("Here are the matching tasks in the list:");
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.print((i + 1) + ".");
+            System.out.println(tasks.get(i));
         }
         System.out.println(BORDER);
     }

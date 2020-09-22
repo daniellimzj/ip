@@ -13,6 +13,7 @@ public class ToDo extends Task {
 
     /**
      * Returns a String to be written to files when the ToDo is saved.
+     *
      * @return ToDo as a formatted String to be saved to files.
      */
     @Override

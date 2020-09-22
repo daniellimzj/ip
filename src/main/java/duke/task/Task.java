@@ -8,8 +8,8 @@ public class Task {
     protected boolean isDone;
 
     private static int taskCount = 0;
-    private static final String TICK = "\u2713";
-    private static final String CROSS = "\u2718";
+    public static final String TICK = "\u2713";
+    public static final String CROSS = "\u2718";
     protected static final String SEPARATOR = "~#~";
 
     protected static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy HH:mm");
@@ -21,6 +21,7 @@ public class Task {
 
     /**
      * Returns the status icon to be printed that represents if the Task is done.
+     *
      * @return Status icon.
      */
     public String getStatusIcon() {
@@ -29,6 +30,7 @@ public class Task {
 
     /**
      * Sets if the Task is done or not.
+     *
      * @param isDone Boolean of whether the Task is done.
      */
     public void setIsDone(boolean isDone) {
@@ -43,6 +45,7 @@ public class Task {
 
     /**
      * Returns a String to be written to files when the Task is saved.
+     *
      * @return Task in format to be saved to files.
      */
     public String printToFile() {

@@ -1,4 +1,12 @@
-package duke;
+package duke.parser;
+
+import duke.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.ui.Ui;
+
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 public class Parser {
 
@@ -14,15 +22,16 @@ public class Parser {
     private static final String PARAM_FIND = "find";
 
 
-    public static final int DESCRIPTION = 0;
-    public static final int BY = 1;
-    public static final int AT = 1;
+    public static final int INDEX_DESCRIPTION = 0;
+    public static final int INDEX_BY = 1;
+    public static final int INDEX_AT = 1;
 
     public Parser() {
     }
 
     /**
      * Returns the parameter taken as the command word for adding a type of Task.
+     *
      * @param param The type of Task whose parameter is desired.
      * @return Command word for adding a type of Task.
      */
@@ -73,6 +82,7 @@ public class Parser {
 
     /**
      * Returns the index at which the desired Task should be marked done.
+     *
      * @param nextLine Command inputted by user.
      * @return Index at which desired Task should be marked done.
      */
@@ -82,6 +92,7 @@ public class Parser {
 
     /**
      * Returns the index at which the desired Task should be deleted.
+     *
      * @param nextLine Command inputted by user.
      * @return Index at which desired Task should be deleted.
      */
@@ -91,6 +102,7 @@ public class Parser {
 
     /**
      * Returns description of ToDo.
+     *
      * @param nextLine Command inputted by user.
      * @return Description of the ToDo as a String.
      * @throws DukeException If no description is provided.
@@ -105,6 +117,7 @@ public class Parser {
 
     /**
      * Returns description and 'by' of Deadline.
+     *
      * @param nextLine Command inputted by user.
      * @return Description and 'by' of Deadline as Strings.
      * @throws DukeException If no description is provided.
@@ -116,10 +129,10 @@ public class Parser {
         int firstIndexOfByCommand = deadline.indexOf(PARAM_BY);
         int lastIndexOfByCommand = firstIndexOfByCommand + PARAM_BY.length();
 
-        params[DESCRIPTION] = deadline.substring(0, firstIndexOfByCommand).trim();
-        params[BY] = deadline.substring(lastIndexOfByCommand).trim();
+        params[INDEX_DESCRIPTION] = deadline.substring(0, firstIndexOfByCommand).trim();
+        params[INDEX_BY] = deadline.substring(lastIndexOfByCommand).trim();
 
-        if (params[DESCRIPTION].isBlank()) {
+        if (params[INDEX_DESCRIPTION].isBlank()) {
             throw new DukeException();
         }
 
@@ -128,21 +141,22 @@ public class Parser {
 
     /**
      * Returns description and 'at' of Event.
+     *
      * @param nextLine Command inputted by user.
      * @return Description and 'at' of Event as Strings.
      * @throws DukeException If no description is provided.
      */
-    public String[] getEventParams(String nextLine) throws DukeException{
+    public String[] getEventParams(String nextLine) throws DukeException {
         String[] params = new String[2];
         String event = nextLine.substring(PARAM_EVENT.length());
 
         int firstIndexOfAtCommand = event.indexOf(PARAM_AT);
         int lastIndexOfAtCommand = firstIndexOfAtCommand + PARAM_AT.length();
 
-        params[DESCRIPTION] = event.substring(0, firstIndexOfAtCommand).trim();
-        params[AT] = event.substring(lastIndexOfAtCommand).trim();
+        params[INDEX_DESCRIPTION] = event.substring(0, firstIndexOfAtCommand).trim();
+        params[INDEX_AT] = event.substring(lastIndexOfAtCommand).trim();
 
-        if (params[DESCRIPTION].isBlank()) {
+        if (params[INDEX_DESCRIPTION].isBlank()) {
             throw new DukeException();
         }
 
@@ -151,10 +165,83 @@ public class Parser {
 
     /**
      * Returns the keyword used to find Tasks in the TaskList.
+     *
      * @param nextLine Command inputted by user.
      * @return Keyword to search for.
      */
     public String getFindParams(String nextLine) {
         return nextLine.substring(PARAM_FIND.length()).trim();
     }
+
+    public void runConversation(TaskList tasks, Ui ui) {
+
+        String nextLine = ui.getNextLine();
+
+        while (!isByeCommand(nextLine)) {
+            if (isListCommand(nextLine)) {
+                ui.printList(tasks);
+
+            } else if (isDoneCommand(nextLine)) {
+                try {
+                    int taskNumber = getIndexToMarkAsDone(nextLine);
+                    tasks.markTaskAsDone(taskNumber);
+                    ui.printDoneTaskMessage(tasks.getTask(taskNumber));
+                } catch (NumberFormatException e) {
+                    ui.printDoneErrorMessage();
+                } catch (NullPointerException | IndexOutOfBoundsException e) {
+                    ui.printTaskNumberErrorMessage();
+                }
+
+            } else if (isDeleteCommand(nextLine)) {
+                try {
+                    int taskNumber = getIndexToDelete(nextLine);
+                    Task deletedTask = tasks.deleteTask(taskNumber);
+                    ui.printDeleteTaskMessage(deletedTask, tasks);
+                } catch (NumberFormatException e) {
+                    ui.printDoneErrorMessage();
+                } catch (NullPointerException | IndexOutOfBoundsException e) {
+                    ui.printTaskNumberErrorMessage();
+                }
+
+            } else if (isAddToDoCommand(nextLine)) {
+                try {
+                    tasks.addToDo(getToDoParams(nextLine));
+                    ui.printAddTaskMessage(tasks);
+                } catch (DukeException e) {
+                    ui.printDescriptionErrorMessage(Parser.getParam("todo"));
+                }
+
+            } else if (isAddDeadlineCommand(nextLine)) {
+                try {
+                    tasks.addDeadline(getDeadlineParams(nextLine));
+                    ui.printAddTaskMessage(tasks);
+                } catch (StringIndexOutOfBoundsException | DukeException e) {
+                    ui.printDescriptionErrorMessage(Parser.getParam("deadline"));
+                } catch (DateTimeParseException e) {
+                    ui.printDateTimeParseErrorMessage();
+                }
+
+            } else if (isAddEventCommand(nextLine)) {
+                try {
+                    tasks.addEvent(getEventParams(nextLine));
+                    ui.printAddTaskMessage(tasks);
+                } catch (StringIndexOutOfBoundsException | DukeException e) {
+                    ui.printDescriptionErrorMessage(Parser.getParam("event"));
+                } catch (DateTimeParseException e) {
+                    ui.printDateTimeParseErrorMessage();
+                }
+
+            } else if (isFindCommand(nextLine)) {
+                ArrayList<Task> filteredTaskList = tasks.findTasks(getFindParams(nextLine));
+                ui.printFilteredList(filteredTaskList);
+
+            } else {
+                ui.printUnknownMessage();
+            }
+            nextLine = ui.getNextLine();
+        }
+    }
 }
+
+
+

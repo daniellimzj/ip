@@ -13,6 +13,7 @@ public class Deadline extends Task {
 
     /**
      * Returns the 'by' of the Deadline in LocalDateTime format.
+     *
      * @return 'by' of the Deadline in LocalDateTimeFormat.
      */
     public LocalDateTime getBy() {
@@ -21,6 +22,7 @@ public class Deadline extends Task {
 
     /**
      * Sets the 'by' of the Deadline.
+     *
      * @param by 'by' in String format.
      */
     public void setBy(String by) {
@@ -29,6 +31,7 @@ public class Deadline extends Task {
 
     /**
      * Returns the 'by' in a formatted String.
+     *
      * @return 'by' as a formatted String.
      */
     public String formatByForPrint() {
@@ -42,6 +45,7 @@ public class Deadline extends Task {
 
     /**
      * Returns a String to be written to files when the Deadline is saved.
+     *
      * @return Deadline as a formatted String to be saved to files.
      */
     @Override

@@ -1,7 +1,10 @@
 package duke;
 
+import duke.parser.Parser;
+import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
+import duke.ui.Ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,73 +36,7 @@ public class Duke {
     private void run() {
 
         ui.printWelcomeMessage();
-        String nextLine = ui.getNextLine();
-
-        while (!parser.isByeCommand(nextLine)) {
-
-            if (parser.isListCommand(nextLine)) {
-                ui.printList(tasks);
-
-            } else if (parser.isDoneCommand(nextLine)) {
-                try {
-                    int taskNumber = parser.getIndexToMarkAsDone(nextLine);
-                    tasks.markTaskAsDone(taskNumber);
-                    ui.printDoneTaskMessage(tasks.getTask(taskNumber));
-                } catch (NumberFormatException e) {
-                    ui.printDoneErrorMessage();
-                } catch (NullPointerException | IndexOutOfBoundsException e) {
-                    ui.printTaskNumberErrorMessage();
-                }
-
-            } else if (parser.isDeleteCommand(nextLine)) {
-                try {
-                    int taskNumber = parser.getIndexToDelete(nextLine);
-                    Task deletedTask = tasks.deleteTask(taskNumber);
-                    ui.printDeleteTaskMessage(deletedTask, tasks);
-                } catch (NumberFormatException e) {
-                    ui.printDoneErrorMessage();
-                } catch (NullPointerException | IndexOutOfBoundsException e) {
-                    ui.printTaskNumberErrorMessage();
-                }
-
-            } else if (parser.isAddToDoCommand(nextLine)) {
-                try {
-                    tasks.addToDo(parser.getToDoParams(nextLine));
-                    ui.printAddTaskMessage(tasks);
-                } catch (DukeException e) {
-                    ui.printDescriptionErrorMessage(Parser.getParam("todo"));
-                }
-
-            } else if (parser.isAddDeadlineCommand(nextLine)) {
-                try {
-                    tasks.addDeadline(parser.getDeadlineParams(nextLine));
-                    ui.printAddTaskMessage(tasks);
-                } catch (StringIndexOutOfBoundsException | DukeException e) {
-                    ui.printDescriptionErrorMessage(Parser.getParam("deadline"));
-                } catch (DateTimeParseException e) {
-                    ui.printDateTimeParseErrorMessage();
-                }
-
-            } else if (parser.isAddEventCommand(nextLine)) {
-                try {
-                    tasks.addEvent(parser.getEventParams(nextLine));
-                    ui.printAddTaskMessage(tasks);
-                } catch (StringIndexOutOfBoundsException | DukeException e) {
-                    ui.printDescriptionErrorMessage(Parser.getParam("event"));
-                } catch (DateTimeParseException e) {
-                    ui.printDateTimeParseErrorMessage();
-                }
-
-            } else if (parser.isFindCommand(nextLine)) {
-                ArrayList<Task> filteredTaskList = tasks.findTasks(parser.getFindParams(nextLine));
-                ui.printFilteredList(filteredTaskList);
-
-            } else {
-                ui.printUnknownMessage();
-            }
-
-            nextLine = ui.getNextLine();
-        }
+        parser.runConversation(tasks, ui);
 
         try {
             storage.writeTasksToFile(tasks);

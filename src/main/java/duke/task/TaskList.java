@@ -1,6 +1,6 @@
 package duke.task;
 
-import duke.Parser;
+import duke.parser.Parser;
 
 import java.util.ArrayList;
 
@@ -29,6 +29,7 @@ public class TaskList {
 
     /**
      * Returns the Task at the specified index of the TaskList.
+     *
      * @param taskNumber Index of the required Task.
      * @return Task at specified index.
      */
@@ -38,6 +39,7 @@ public class TaskList {
 
     /**
      * Returns the number of Tasks in the TaskList.
+     *
      * @return Number of Tasks.
      */
     public int getTaskCount() {
@@ -46,6 +48,7 @@ public class TaskList {
 
     /**
      * Returns the most recently added Task in the TaskList.
+     *
      * @return Most recently added Task.
      */
     public Task getLastTask() {
@@ -54,6 +57,7 @@ public class TaskList {
 
     /**
      * Marks the Task at the specified index of the TaskList as done.
+     *
      * @param taskNumber Index of the Task to be deleted.
      */
     public void markTaskAsDone(int taskNumber) {
@@ -62,6 +66,7 @@ public class TaskList {
 
     /**
      * Deletes the Task at the specified index of the TaskList.
+     *
      * @param taskNumber Index of the Task to be deleted.
      * @return Deleted Task.
      */
@@ -73,6 +78,7 @@ public class TaskList {
 
     /**
      * Adds a todo to the task list.
+     *
      * @param todo Description of the todo.
      */
     public void addToDo(String todo) {
@@ -81,22 +87,25 @@ public class TaskList {
 
     /**
      * Adds a Deadline to the TaskList.
+     *
      * @param params String array holding the description and 'by' of the DeadLine.
      */
     public void addDeadline(String[] params) {
-        addTask(new Deadline(params[Parser.DESCRIPTION], params[Parser.BY]));
+        addTask(new Deadline(params[Parser.INDEX_DESCRIPTION], params[Parser.INDEX_BY]));
     }
 
     /**
      * Adds an Event to the TaskList.
+     *
      * @param params String array holding the description and 'at' of the Event.
      */
     public void addEvent(String[] params) {
-        addTask(new Event(params[Parser.DESCRIPTION], params[Parser.AT]));
+        addTask(new Event(params[Parser.INDEX_DESCRIPTION], params[Parser.INDEX_AT]));
     }
 
     /**
      * Returns an ArrayList of Tasks containing the keyword searched for.
+     *
      * @param keyword Keyword to search for.
      * @return ArrayList of Tasks containing the keyword.
      */
