@@ -17,12 +17,14 @@ Now you have 4 tasks in the list.
 ==================================================
 ==================================================
 Oops! The format of the todo is incorrect!
+Format for todo: todo DESCRIPTION
 ==================================================
 ==================================================
 Oops! Please make sure your date and time is in the format dd-mm-yy hh-mm!
 ==================================================
 ==================================================
 Oops! The format of the deadline is incorrect!
+Format for deadline: deadline DESCRIPTION /by dd-mm-yy hh:mm
 ==================================================
 ==================================================
 Got it. I've added this task:
@@ -34,6 +36,7 @@ Oops! Please make sure your date and time is in the format dd-mm-yy hh-mm!
 ==================================================
 ==================================================
 Oops! The format of the event is incorrect!
+Format for event: event DESCRIPTION /at dd-mm-yy hh:mm
 ==================================================
 ==================================================
 Got it. I've added this task:
