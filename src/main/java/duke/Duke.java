@@ -34,10 +34,8 @@ public class Duke {
     }
 
     private void run() {
-
         ui.printWelcomeMessage();
         parser.runConversation(tasks, ui);
-
         try {
             storage.writeTasksToFile(tasks);
         } catch (IOException e) {
