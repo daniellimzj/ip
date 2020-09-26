@@ -177,7 +177,7 @@ Here are the matching tasks in the list:
 ==================================================
 ```
 
-### Exiting the program: `bye`
+#### Exiting the program: `bye`
 The `bye` command exits the program and saves your tasks to a file for future usage.
 
 Usage: `bye`
