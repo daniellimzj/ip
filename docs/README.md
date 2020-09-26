@@ -6,14 +6,15 @@ Duke is a desktop app for keeping track of your daily todos, events and deadline
     * [Setting Up in IntelliJ](#setting-up-in-intellij) 
     * [Running the JAR file](#running-the-jar-file)
 * [Commands and Usage](#commands-and-usage)
-    * [Adding a todo: `todo`](#adding-a-todo-todo)
-    * [Adding an event: `event`](#adding-an-event-event)
-    * [Adding a deadline: `deadline`](#adding-a-deadline-deadline)
-    * [Displaying the list: `list`](#displaying-the-list-list)
-    * [Marking a task as done: `done`](#marking-a-task-as-done-done)
-    * [Deleting a task: `delete`](#deleting-a-task-delete)
-    * [Finding a task: `find`](#finding-a-task-find)
-    * [Exiting the program:`bye`](#exiting-the-program-bye)
+    * [General Notes](#general-notes)
+    * [Adding a todo: `todo`](#adding-a-todo)
+    * [Adding an event: `event`](#adding-an-event)
+    * [Adding a deadline: `deadline`](#adding-a-deadline)
+    * [Displaying the list: `list`](#displaying-the-list)
+    * [Marking a task as done: `done`](#marking-a-task-as-done)
+    * [Deleting a task: `delete`](#deleting-a-task)
+    * [Finding a task: `find`](#finding-a-task)
+    * [Exiting the program:`bye`](#exiting-the-program)
 * [Command Summary](#command-summary)
 
 ## Accessing Duke
@@ -63,11 +64,11 @@ If the status icons in lists do not display properly, experiment with changing t
 
 ## Commands and Usage
 
-#### Some Things to Note:
+### General Notes
 - In the following section, all capitalised words in code represent parameters. e.g. `PARAMETER`.
 - All `DATETIME` parameters must be in a `dd-mm-yy hh:mm` format.
 
-#### Adding a todo: `todo`
+### Adding a todo
 The `todo` command adds a to-do with `DESCRIPTION` to the list.
 
 Usage: `todo DESCRIPTION`
@@ -83,7 +84,7 @@ Now you have 1 tasks in the list.
 ==================================================
 ```
 
-#### Adding an event: `event`
+### Adding an event
 The `event` command adds an event with `DESCRIPTION` at `DATETIME` to the list.
 
 Usage: `event DESCRIPTION /at DATETIME`
@@ -99,7 +100,7 @@ Now you have 2 tasks in the list.
 ==================================================
 ```
  
-#### Adding a deadline: `deadline`
+### Adding a deadline
 The `deadline` command adds a deadline with `DESCRIPTION` to be done by `DATETIME` to the list.
 
 Usage: `deadline DESCRIPTION /by DATETIME`
@@ -115,7 +116,7 @@ Now you have 3 tasks in the list.
 ==================================================
 ```
 
-#### Displaying the list: `list`
+### Displaying the list
 The `list` command shows all the tasks in the list.
 
 Usage: `list`
@@ -131,7 +132,7 @@ Expected Output:
 ==================================================
 ```
 
-#### Marking a task as done: `done`
+### Marking a task as done
 The `done` command marks the task in the list at that `INDEX` as done.
 
 Usage: `done INDEX`
@@ -146,7 +147,7 @@ Nice! I've marked this task as done:
 ==================================================
 ```
 
-#### Deleting a task: `delete`
+### Deleting a task
 The `delete` command deletes the task in the list at a particular `INDEX`.
 
 Usage: `delete INDEX`
@@ -162,7 +163,7 @@ Now you have 2 tasks in the list.
 ==================================================
 ```
 
-#### Finding a task: `find`
+### Finding a task
 The `find` command shows all the tasks in the list containing a `KEYWORD`.
 
 Usage: `find KEYWORD`
@@ -177,7 +178,7 @@ Here are the matching tasks in the list:
 ==================================================
 ```
 
-#### Exiting the program: `bye`
+### Exiting the program
 The `bye` command exits the program and saves your tasks to a file for future usage.
 
 Usage: `bye`
