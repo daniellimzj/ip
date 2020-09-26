@@ -1,5 +1,21 @@
 # User Guide
 
+Duke is a desktop app for keeping track of your daily todos, events and deadlines, optimized for use via a Command Line Interface (CLI). For fast typists, using Duke can be faster than traditional Graphical User Interface (GUI) apps.
+
+* [Accessing Duke](#accessing-duke)
+    * [Setting Up in IntelliJ](#setting-up-in-intellij) 
+    * [Running the JAR file](#running-the-jar-file)
+* [Commands and Usage](#commands-and-usage)
+    * [Adding a todo: `todo`](#adding-a-todo-todo)
+    * [Adding an event: `event`](#adding-an-event-event)
+    * [Adding a deadline: `deadline`](#adding-a-deadline-deadline)
+    * [Displaying the list: `list`](#displaying-the-list-list)
+    * [Marking a task as done: `done`](#marking-a-task-as-done-done)
+    * [Deleting a task: `delete`](#deleting-a-task-delete)
+    * [Finding a task: `find`](#finding-a-task-find)
+    * [Exiting the program:`bye`](#exiting-the-program-bye)
+* [Command Summary](#command-summary)
+
 ## Accessing Duke
 ### Setting Up in IntelliJ
 
@@ -45,38 +61,18 @@ Below are the instructions for how to run the JAR file on Windows.
    ```
 If the status icons in lists do not display properly, experiment with changing the font used in the command prompt. One font that works is NSimSun.
 
-## Features
-
-#### Add Tasks to Your List
-You can add the following types of tasks to your list: Todos, Events and Deadlines.
-
-#### Display Your List
-You can view what is in your list at any time.
-
-#### Mark Tasks as Done
-You can mark tasks in your list as done when you complete them.
-
-#### Delete Tasks From Your List
-You can delete tasks from your list if you no longer want them.
-
-#### Find Tasks with Keywords
-You can search your list for tasks that contain a keyword or phrase.
-
-#### Saving the Tasks In Your List
-You can save your list of tasks when exiting. They will be automatically loaded next time.
-
 ## Commands and Usage
 
 #### Some Things to Note:
 - In the following section, all capitalised words in code represent parameters. e.g. `PARAMETER`.
 - All `DATETIME` parameters must be in a `dd-mm-yy hh:mm` format.
 
-#### `todo` Command
-The `todo` adds a to-do with `DESCRIPTION` to the list.
+#### Adding a todo: `todo`
+The `todo` command adds a to-do with `DESCRIPTION` to the list.
 
 Usage: `todo DESCRIPTION`
 
-Example: `todo my laundry`
+Example: `todo buy groceries!!!`
 
 Expected Output: 
 ```
@@ -87,7 +83,7 @@ Now you have 1 tasks in the list.
 ==================================================
 ```
 
-#### `event` Command
+#### Adding an event: `event`
 The `event` command adds an event with `DESCRIPTION` at `DATETIME` to the list.
 
 Usage: `event DESCRIPTION /at DATETIME`
@@ -103,7 +99,7 @@ Now you have 2 tasks in the list.
 ==================================================
 ```
  
-#### `deadline` Command
+#### Adding a deadline: `deadline`
 The `deadline` command adds a deadline with `DESCRIPTION` to be done by `DATETIME` to the list.
 
 Usage: `deadline DESCRIPTION /by DATETIME`
@@ -119,10 +115,12 @@ Now you have 3 tasks in the list.
 ==================================================
 ```
 
-#### `list` Command
+#### Displaying the list: `list`
 The `list` command shows all the tasks in the list.
 
 Usage: `list`
+
+Example: `list`
 
 Expected Output:
 ```
@@ -133,7 +131,7 @@ Expected Output:
 ==================================================
 ```
 
-#### `done` Command
+#### Marking a task as done: `done`
 The `done` command marks the task in the list at that `INDEX` as done.
 
 Usage: `done INDEX`
@@ -148,7 +146,7 @@ Nice! I've marked this task as done:
 ==================================================
 ```
 
-#### `delete` Command
+#### Deleting a task: `delete`
 The `delete` command deletes the task in the list at a particular `INDEX`.
 
 Usage: `delete INDEX`
@@ -164,7 +162,7 @@ Now you have 2 tasks in the list.
 ==================================================
 ```
 
-#### `find` Command
+#### Finding a task: `find`
 The `find` command shows all the tasks in the list containing a `KEYWORD`.
 
 Usage: `find KEYWORD`
@@ -175,14 +173,16 @@ Expected Output:
 ```
 ==================================================
 Here are the matching tasks in the list:
-1.[T][✘] buy groceries!!!
+1.[T][✓] buy groceries!!!
 ==================================================
 ```
 
-### `bye` Command
+### Exiting the program: `bye`
 The `bye` command exits the program and saves your tasks to a file for future usage.
 
 Usage: `bye`
+
+Example: `bye`
 
 Expected Output: 
 ```
@@ -190,5 +190,18 @@ Expected Output:
 Bye. Hope to see you again soon!
 ==================================================
 ```
+
+## Command Summary
+Command | Format | Example
+------- | ------ | -------
+Add todo | `todo DESCRIPTION` | `todo buy groceries!!!`
+Add event | `event DESCRIPTION /at DATETIME` | `event my first midterm exam /at 01-10-20 10:01`
+Add deadline | `deadline DESCRIPTION /by DATETIME` | `deadline my homework /by 31-12-20 23:59`
+List | `list` | `list`
+Done | `done INDEX` | `done 1`
+Delete | `delete INDEX` | `delete 3`
+Find | `find KEYWORD` | `find groceries`
+Exit | `bye` | `bye`
+
 
 
