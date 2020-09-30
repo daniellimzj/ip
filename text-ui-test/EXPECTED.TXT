@@ -20,7 +20,7 @@ Oops! The format of the todo is incorrect!
 Format for todo: todo DESCRIPTION
 ==================================================
 ==================================================
-Oops! Please make sure your date and time is in the format dd-mm-yy hh-mm!
+Oops! Please make sure your date and time is in the format dd-mm-yy hh:mm!
 ==================================================
 ==================================================
 Oops! The format of the deadline is incorrect!
@@ -32,7 +32,7 @@ Got it. I've added this task:
 Now you have 5 tasks in the list.
 ==================================================
 ==================================================
-Oops! Please make sure your date and time is in the format dd-mm-yy hh-mm!
+Oops! Please make sure your date and time is in the format dd-mm-yy hh:mm!
 ==================================================
 ==================================================
 Oops! The format of the event is incorrect!
