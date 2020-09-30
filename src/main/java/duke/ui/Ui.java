@@ -172,7 +172,7 @@ public class Ui {
      */
     public void printDateTimeParseErrorMessage() {
         System.out.println(BORDER);
-        System.out.println("Oops! Please make sure your date and time is in the format dd-mm-yy hh-mm!");
+        System.out.println("Oops! Please make sure your date and time is in the format dd-mm-yy hh:mm!");
         System.out.println(BORDER);
     }
 
