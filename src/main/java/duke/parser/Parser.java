@@ -48,35 +48,35 @@ public class Parser {
         }
     }
 
-    public boolean isListCommand(String nextLine) {
+    private boolean isListCommand(String nextLine) {
         return nextLine.equals(PARAM_LIST);
     }
 
-    public boolean isByeCommand(String nextLine) {
+    private boolean isByeCommand(String nextLine) {
         return nextLine.equals(PARAM_BYE);
     }
 
-    public boolean isDoneCommand(String nextLine) {
+    private boolean isDoneCommand(String nextLine) {
         return nextLine.startsWith(PARAM_DONE);
     }
 
-    public boolean isDeleteCommand(String nextLine) {
+    private boolean isDeleteCommand(String nextLine) {
         return nextLine.startsWith(PARAM_DELETE);
     }
 
-    public boolean isAddToDoCommand(String nextLine) {
+    private boolean isAddToDoCommand(String nextLine) {
         return nextLine.startsWith(PARAM_TODO);
     }
 
-    public boolean isAddDeadlineCommand(String nextLine) {
+    private boolean isAddDeadlineCommand(String nextLine) {
         return nextLine.startsWith(PARAM_DEADLINE);
     }
 
-    public boolean isAddEventCommand(String nextLine) {
+    private boolean isAddEventCommand(String nextLine) {
         return nextLine.startsWith(PARAM_EVENT);
     }
 
-    public boolean isFindCommand(String nextLine) {
+    private boolean isFindCommand(String nextLine) {
         return nextLine.startsWith(PARAM_FIND);
     }
 
